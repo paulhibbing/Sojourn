@@ -1,7 +1,7 @@
 ---
 output:
   md_document:
-    variant: markdown_github
+    variant: gfm
 ---
 
 <!-- README.md is generated from README.Rmd. Please edit that file -->
@@ -19,12 +19,4 @@ knitr::opts_chunk$set(
 
 # Sojourn
 
-The goal of Sojourn is to ...
-
-## Example
-
-This is a basic example which shows you how to solve a common problem:
-
-```{r example}
-## basic example code
-```
+`Sojourn` is a package for applying Sojourn methods to ActiGraph accelerometer data. See [Lyden et al. (2014)](https://www.ncbi.nlm.nih.gov/pubmed/23860415) and [Hibbing et al. (2018)](https://www.ncbi.nlm.nih.gov/pubmed/29135657).
