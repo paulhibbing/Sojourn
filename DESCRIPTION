@@ -1,0 +1,21 @@
+Package: Sojourn
+Type: Package
+Title: Apply Sojourn Methods for Processing ActiGraph
+    Accelerometer Data
+Version: 0.1.0
+Authors@R: c(
+    person(c("Paul", "R."), "Hibbing", email = "paulhibbing@gmail.com",
+		  role = c("aut","cre")),
+		person(c("Kate"), "Lyden", email = "katelyden6@gmail.com",
+		  role = c("aut")),
+    person(c("Vincent", "T."), "van Hees", role = "ctb"))
+Depends: R (>= 3.1.0)
+Description: Provides a simple way for utilizing Sojourn methods for
+    accelerometer processing, as detailed in Lyden K, Keadle S,
+    Staudenmayer J, & Freedson P (2014) <doi:10.1249/MSS.0b013e3182a42a2d>
+    and Hibbing PR, Ellingson LD, Dixon PM, & Welk GJ (2018)
+    <doi:10.1249/MSS.0000000000001486>.
+License: GPL-3 + file LICENSE
+Encoding: UTF-8
+LazyData: true
+Imports: AGread
