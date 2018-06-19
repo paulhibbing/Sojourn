@@ -1,12 +1,29 @@
-  countsFile <- 'ActiGraph Files/ExampleFile_CountsHip.csv'
-    ## ^^^ The location and filename of the counts data file to process
-  countsData <- read.ActiGraph(countsFile)
-    ## ^^^ This runs a function that will read the file and process it
-    ## ^^^ using Sojourns. It will prompt you to give it information that it needs,
-    ## including demographics, which you can make up for purposes of the demo.
-  View(countsData) ## This will pull up a tab for you to see the processed data
+rm(list = ls())
+source("data-raw/z__internal_add.R")
 
-## We can do the same thing with a raw acceleration file
+# Use youth grids
+  # load("data-raw/Sojourn Grids.RData")
+  # youth_grids <- SojGrids
+  # internal_add(youth_grids)
+
+# Use youth nnets
+  # load("data-raw/Youth Sojourns NNets.RData")
+  # sapply(c("hipCounts", "hipRaw", "wristCounts", "wristRaw"),
+  #   function(x) {
+  #     assign(paste("youth", x, sep = "_"),
+  #       get(x, envir = globalenv()),
+  #       envir = globalenv())
+  #     rm(list = x, envir = globalenv())
+  #     })
+  # internal_add(youth_hipCounts)
+  # internal_add(youth_hipRaw)
+  # internal_add(youth_wristCounts)
+  # internal_add(youth_wristRaw)
+
+# Leftover demo code
+  countsFile <- 'ActiGraph Files/ExampleFile_CountsHip.csv'
+  countsData <- read.ActiGraph(countsFile)
+  View(countsData)
+
   rawFile <- 'ActiGraph Files/ExampleFile_RawHip.csv'
   rawData <- read.ActiGraph(rawFile)
-  View(rawData)

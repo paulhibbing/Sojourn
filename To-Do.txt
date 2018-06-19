@@ -1,0 +1,4 @@
+* Package is heavy (> 5 mb), which may need to be creatively addressed.
+    -- Youth nnets are class `large train` from caret. Investigating
+    predict.train may reveal a way that we can reduce the size of those
+    objects.

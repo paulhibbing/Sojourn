@@ -18,4 +18,9 @@ Description: Provides a simple way for utilizing Sojourn methods for
 License: GPL-3 + file LICENSE
 Encoding: UTF-8
 LazyData: true
-Imports: AGread
+Imports: AGread,
+    nnet,
+    caret
+RoxygenNote: 6.0.1
+URL: http://github.com/paulhibbing/Sojourn
+BugReports: http://github.com/paulhibbing/Sojourn/issues

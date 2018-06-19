@@ -1,0 +1,29 @@
+Files:
+
+soj.demonstration.R: 
+This is an R script that demonstrates how to use the soj estimators.
+Note: You will probably have to change some paths.
+
+Files used in the demonstration:
+
+AG03MN.csv: 
+This is an ActiGraph GT3X file to demonstrate the method.
+Note: This is a "mode 45" file.
+
+sojourn.functions.R: 
+This is an R script that has the functions needed to use the methods.
+It is called by "soj.demonstration.R," and it needs to be saved to a
+directory where "soj.demonstration.R" can find it.
+
+
+The following files contain R objects that are loaded by are loaded 
+by "soj.demonstration.R," and they need to be saved to a
+directory where "soj.demonstration.R" can find them:
+cent.1.Rdata
+class.nnn.use.this.Rdata
+nnet3ests.RData
+scal.1.Rdata
+
+
+
+
