@@ -1,56 +1,3 @@
-# Need id, Vector.Magnitude, Site, Sex, as.integer(Age)
-input_demographic <- function(){
-
-  id <- svDialogs::dlgInput('Enter the participant ID', default = 'DEMO')$res
-  Site <- switch(svDialogs::dlgMessage('Is the data from the hip?', 'yesno')$res,
-                'yes' = 'Hip', 'no' = 'Wrist')
-  Sex <- switch(svDialogs::dlgMessage('Is the participant female?', 'yesno')$res,
-               'yes' = 'F', 'no' = 'M')
-
-  ## Age ####
-    Age <- svDialogs::dlgInput('Please enter the participant\'s age in years:',
-                              default = '10')$res
-    repeat{
-    ageTest <- try(as.integer(Age), TRUE)
-
-    if(class(ageTest) == "try-error" | is.na(ageTest)) {
-
-      message('Age not entered correctly. Try again')
-      Age <- svDialogs::dlgInput('Please enter the participant\'s age in years:',
-        default = '10')$res}
-
-    } else{
-
-      break
-
-    }
-
-    Age = as.integer(Age)
-
-  ## BMI ####
-    BMI <- svDialogs::dlgInput('Please enter the participant\'s BMI',
-                              default = '20')$res
-      repeat{
-      bmiTest <- try(as.numeric(BMI), TRUE)
-
-      if(class(bmiTest) == "try-error" | is.na(bmiTest)) {
-
-        message('BMI not entered correctly. Try again')
-        BMI <- svDialogs::dlgInput('Please enter the participant\'s BMI',
-          default = '20')$res
-
-      } else{
-
-        break
-
-      }
-      }
-
-    BMI <- as.numeric(BMI)
-    vm <- 'Vector.Magnitude'
-
-}
-
 apply_youth_sojourn <- function(AG, verbose = FALSE) {
 
   ## Test Input
@@ -109,4 +56,4 @@ apply_youth_sojourn <- function(AG, verbose = FALSE) {
         )
       )
     return(AG)
-  }
+}

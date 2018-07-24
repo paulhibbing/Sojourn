@@ -2,3 +2,5 @@
     -- Youth nnets are class `large train` from caret. Investigating
     predict.train may reveal a way that we can reduce the size of those
     objects.
+* Document youth Sojourn functions
+* Re-work youth code to work in package structure
