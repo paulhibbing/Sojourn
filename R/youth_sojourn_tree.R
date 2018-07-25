@@ -1,3 +1,19 @@
+#' Decision tree for making final predictions in the youth Sojourn method
+#'
+#' @param Vector.Magnitude numeric vector of triaxial acceleration (vector
+#'   magnitude for activity counts, and Euclidian Norm Minus One for raw
+#'   acceleration)
+#' @param Block.Est predictions obtained from the neural networks using static
+#'   segmentation
+#' @param Sojourns.Est predictions obtained from the neural networks using
+#'   dynamic segmentation (i.e., Sojourn-specific predictions)
+#' @param Hip logical. Are data from a hip-worn device?
+#' @inheritParams youth_network_shape
+#'
+#' @return A factor vector of predicted physical activity intensities
+#'   (Sedentary, Light, or moderate-to-vigorous physical activity (MVPA))
+#' @keywords internal
+#'
 youth_sojourn_tree <- function(Vector.Magnitude, Block.Est, Sojourns.Est, Hip = T, RAW = F, epoch = 1){
 
   ##Initialize threshold for counts variables
@@ -31,4 +47,8 @@ youth_sojourn_tree <- function(Vector.Magnitude, Block.Est, Sojourns.Est, Hip = 
   Intensity.Est <- ifelse(Intensity.Est=='','Light',Intensity.Est) # Assign light for undetermined values
 
   Intensity.Est <- factor(Intensity.Est, levels = c('Sedentary','Light','MVPA'))
-  return(Intensity.Est)}
+
+  return(Intensity.Est)
+
+}
+

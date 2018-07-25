@@ -20,7 +20,11 @@ Encoding: UTF-8
 LazyData: true
 Imports: AGread,
     nnet,
-    caret
+    caret,
+    dplyr (>= 0.7),
+    svDialogs (>= 1.0),
+    magrittr (>= 1.5),
+    rlang (>= 0.2)
 RoxygenNote: 6.0.1
 URL: http://github.com/paulhibbing/Sojourn
 BugReports: http://github.com/paulhibbing/Sojourn/issues

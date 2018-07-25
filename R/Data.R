@@ -1,0 +1,20 @@
+#' Sample data for exploring Sojourn methods
+#'
+#' @format A data frame with 10000 rows and 11 variables:
+#' \describe{
+#'   \item{id}{An example ID for the data set}
+#'   \item{Sex}{An example sex for the data set}
+#'   \item{Age}{An example age (in years) for the data set}
+#'   \item{BMI}{An example body mass index (in kg/m^2) for the data set}
+#'   \item{Timestamp}{POSIX-formatted variable giving the timestamp for each
+#'   observation}
+#'   \item{axis1}{Activity counts from the first axis}
+#'   \item{axis2}{Activity counts from the second axis}
+#'   \item{axis3}{Activity counts from the third axis}
+#'   \item{Vector.Magnitude}{Vector magnitude of activity counts
+#'   (sqrt(sum(axis1^2, axis2^2, axis3^2)))}
+#'   \item{steps}{Predicted steps taken}
+#'   \item{incline}{Inclinometer status (0 = off, 1 = lying, 2 = sitting, 3 =
+#'   standing)}
+#' }
+"example_data"

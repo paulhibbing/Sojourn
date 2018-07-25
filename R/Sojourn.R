@@ -9,3 +9,15 @@
 #' @docType package
 #' @name Sojourn
 NULL
+
+#' @importFrom magrittr %>%
+NULL
+
+#' @importFrom stats acf predict quantile sd var
+NULL
+
+#' @importFrom dplyr n
+NULL
+
+#' @importFrom rlang .data
+NULL
