@@ -14,7 +14,7 @@ knitr::opts_chunk$set(
 )
 ```
 
-[![Travis-CI Build Status](https://travis-ci.org/<USERNAME>/<REPO>.svg?branch=master)](https://travis-ci.org/paulhibbing/Sojourn)
+[![Travis-CI Build Status](https://travis-ci.org/paulhibbing/Sojourn.svg?branch=master)](https://travis-ci.org/paulhibbing/Sojourn)
 [![License](https://img.shields.io/badge/license-GPL-blue.svg)](http://www.gnu.org/licenses/gpl-3.0.html)
 
 # Sojourn
