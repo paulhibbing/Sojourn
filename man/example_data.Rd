@@ -4,7 +4,7 @@
 \name{example_data}
 \alias{example_data}
 \title{Sample data for exploring Sojourn methods}
-\format{A data frame with 10000 rows and 11 variables:
+\format{A data frame with 79989 rows and 11 variables:
 \describe{
   \item{id}{An example ID for the data set}
   \item{Sex}{An example sex for the data set}

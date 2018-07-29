@@ -12,7 +12,7 @@ AG$BMI <- 22
 keep <- c("id", "Sex", "Age", "BMI", "Timestamp",
   "axis1", "axis2", "axis3", "Vector.Magnitude", "steps", "incline")
 
-example_data <- AG[1:10000 ,keep]
+example_data <- AG[ ,keep]
 devtools::use_data(example_data, overwrite = TRUE)
 
 # Test to be sure it runs, and quickly

@@ -30,3 +30,24 @@ AG_zero_prop <- function(data){
   return(length(which(data==0))/length(data))
 
 }
+
+#' Compute lag-one autocorrelation
+#'
+#' @param x numeric vector for the computation
+#'
+#' @return a numeric scalar giving the lag-one autocorrelation
+#' @keywords internal
+#'
+acf.lag1 <- function(x) {
+
+  n <- length(x)
+  a <- mean((x[-1]-mean(x[-1]))*(x[-n]-mean(x[-n])))
+  v <- var(x)
+
+  if ((v==0)|(is.na(v)))
+    val <- 0
+  if ((v!=0)&(is.na(v)==F))
+    val <- a/v
+
+  return(val)
+}
