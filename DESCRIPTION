@@ -8,7 +8,10 @@ Authors@R: c(
 		  role = c("aut","cre")),
 		person(c("Kate"), "Lyden", email = "katelyden6@gmail.com",
 		  role = c("aut")),
-    person(c("Vincent", "T."), "van Hees", role = "ctb"))
+    person(c("Vincent", "T."), "van Hees", role = "ctb"),
+    person(c("Isaac", 
+    "J."), "Schwabacher", role = c("aut"))
+    )
 Depends: R (>= 3.1.0)
 Description: Provides a simple way for utilizing Sojourn methods for
     accelerometer processing, as detailed in Lyden K, Keadle S,
@@ -24,7 +27,8 @@ Imports: AGread,
     dplyr (>= 0.7),
     svDialogs (>= 1.0),
     magrittr (>= 1.5),
-    rlang (>= 0.2)
+    rlang (>= 0.2),
+    zoo (>= 1.8)
 RoxygenNote: 6.0.1
 URL: http://github.com/paulhibbing/Sojourn
 BugReports: http://github.com/paulhibbing/Sojourn/issues

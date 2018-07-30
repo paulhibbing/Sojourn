@@ -4,3 +4,9 @@
     objects.
 * Document youth Sojourn functions
 * Re-work youth code to work in package structure
+* Add Ellingson et al. (2017) to the README
+* Take Vincent out as contributor?
+* Resolve:
+  - Warning: @examples [SIP_Functions.R#11]: requires a value
+  - Warning: @examples [SIP_Soj_3x.R#12]: requires a value
+  - Warning: @examples [read_AP.R#9]: requires a value

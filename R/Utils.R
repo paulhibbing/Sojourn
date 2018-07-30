@@ -51,3 +51,33 @@ acf.lag1 <- function(x) {
 
   return(val)
 }
+
+#' Alternate lag-1 autocorrelation function
+#'
+#' This function is used to compute lag-1 autocorrelation for the
+#' \href{https://www.ncbi.nlm.nih.gov/pubmed/27015380}{SIP method}
+#'
+#' @param x numeric vector for the computation
+#'
+#' @keywords internal
+#'
+acf.lag1.alt <- function(x) {
+  acf(x, lag.max = 1, plot = FALSE)$acf[2, 1, 1]
+}
+
+#' Perform mean imputation
+#'
+#' This function is used to perform mean imputation for the
+#' \href{https://www.ncbi.nlm.nih.gov/pubmed/27015380}{SIP method}
+#'
+#' @param x data on which to perform the imputation
+#'
+#' @keywords internal
+#'
+replace.na <- function(x) {
+  # replace NA values with column means
+  col.means <- colMeans(x, na.rm = TRUE)
+  col.names <- rep(names(x), each = dim(x)[1])
+  x[is.na(x)] <- col.means[col.names[is.na(x)]]
+  return(x)
+}

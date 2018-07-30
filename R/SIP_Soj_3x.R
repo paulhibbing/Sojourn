@@ -1,0 +1,121 @@
+#' Triaxial Sojourn method for the \href{https://www.ncbi.nlm.nih.gov/pubmed/27015380}{SIP method}
+#'
+#' @param ag combined ActiGraph and activPAL data on which to identify
+#'   transitions and make predictions
+#' @param short the minimum duration of a qualifying Sojourn
+#'
+#' @return A data frame of processed data using the
+#'   \href{https://www.ncbi.nlm.nih.gov/pubmed/27015380}{SIP method}
+#' @export
+#'
+#' @examples
+sojourn_3x_SIP <- function(ag, short = 30) {
+
+  counts <- ag$counts
+  counts.2 <- ag$axis2
+  counts.3 <- ag$axis3
+  vect.mag <- ag$vm
+  y <- counts
+
+  durations <- find.transitions(y)
+  durations <- combine.sojourns(durations, short)
+  sojourns <- rep(1:length(durations), durations)
+
+  if("ActivityBlocks" %in% colnames(ag))
+  {
+    temp <- sojourns + ag$ActivityBlocks
+    durations <- as.vector(tapply(temp, temp, length))
+    durations <- combine.sojourns(durations, short)
+    sojourns <- rep(1:length(durations), durations)
+  }
+
+  #    make table of durations and sojourns etc
+
+  trans.table <- data.frame(counts = y,
+    counts.2 = counts.2,
+    counts.3 = counts.3,
+    vect.mag = vect.mag,
+    sojourns = sojourns,
+    durations = rep(durations, durations),
+    perc.soj = NA,
+    type = NA,
+    METs = NA,
+    steps = diff(c(0, ag$steps)))
+
+  soj.table <- data.frame(durations = durations,
+    perc.soj = tapply(ag$counts > 0, sojourns, mean),
+    type = 6,
+    METs = NA)
+
+  #   get percent non zero in table
+
+
+  ### get inds.inactivities so can test nnet only to distinguish between lifestyle and sedentary
+
+  inputs <- prep.nnetinputs(ag[soj.table$perc.soj[sojourns] < 0.7,],
+    sojourns[soj.table$perc.soj[sojourns] < 0.7],
+    acf.lag1.alt)
+
+  inact.inputs <- as.data.frame(scale(inputs,
+    center = cent.1,
+    scale = scal.1))
+  rownames(inact.inputs) <- NULL
+
+  #   predict type using all axes + vm.  i intially had a lot of prediction nnets here (ie different axis) but have removed them and only include the one that looks "the best".  there are definitely others we can use/try
+
+  #   remove NaNs created by scaling by 1/0
+  inact.inputs <- inact.inputs[,-c(1, 2, 13)]
+
+  #   add soj.type to trans table
+
+  soj.table$type[soj.table$perc.soj < 0.7] <-
+    apply(predict(class.nnn.6, inact.inputs), 1, which.max)
+
+  #   assign mets to types.
+
+  if("ActivityCode" %in% colnames(ag))
+  {
+    # bout marked sedentary by activPAL?
+    temp <- aggregate(ag$ActivityCode == 0, list(sojourns), mean)$x >= 0.5
+    soj.table$type[soj.table$type %in% c(1, 3)] <-
+      # 3 if sedentary, 1 if not
+      ifelse(temp[soj.table$type %in% c(1, 3)], 3, 1)
+  }
+
+  soj.table$METs[(soj.table$type==1)&(soj.table$perc.soj<=0.12)] <- 1.5
+  soj.table$METs[(soj.table$type==1)&(soj.table$perc.soj>0.12)] <- 1.7
+  soj.table$METs[(soj.table$type==3)&(soj.table$perc.soj<=0.05)] <- 1
+  soj.table$METs[(soj.table$type==3)&(soj.table$perc.soj>0.05)] <- 1.2
+
+  #   this identifies activities for nnet all - 6 means activity
+  #   i realize i am getting lag1 differently than i do for inactivities...i should change to use function throughout.
+  inputs <- prep.nnetinputs(ag[soj.table$type[sojourns] %in% c(2, 4, 6),],
+    sojourns[soj.table$type[sojourns] %in% c(2, 4, 6)],
+    acf.lag1)
+  act.inputs <- inputs[c("X10.","X25.","X50.","X75.","X90.","acf")]
+  rownames(act.inputs) <- NULL
+  act.inputs <- as.data.frame(scale(act.inputs, center = cent, scale = scal))
+
+  #   predict METs
+
+  act.mets.all <- predict(reg.nn,act.inputs)
+  soj.table$METs[is.na(soj.table$METs)] <- act.mets.all
+
+  #   put back in table
+
+  trans.table$perc.soj <- soj.table$perc.soj[sojourns]
+  trans.table$type <- soj.table$type[sojourns]
+  trans.table$METs <- soj.table$METs[sojourns]
+
+  trans.table <- trans.table[,-8] # remove $type
+  if("ActivityCode" %in% names(ag))
+  {
+    trans.table$ActivityCode <- ag$ActivityCode
+    trans.table$AP.steps <- diff(c(0, ag$AP.steps))
+  }
+  row.names(trans.table) <- strftime(ag$Time, "%Y-%m-%dT%H:%M:%S%z")
+  header <- attr(ag, "AG.header")
+  header <- append("Processed with sojourns", header, length(header)-1)
+  attr(trans.table, "AG.header") <- header
+  return(trans.table)
+}
