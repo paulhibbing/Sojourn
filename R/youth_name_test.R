@@ -3,13 +3,14 @@
 #' @inheritParams apply_youth_sojourn
 #' @param demo_names character vector of required demographic variable names to
 #'   look for
+#' @param ... further arguments passed to svDialogs functions
 #'
 #' @return A properly-formatted data frame of monitor data
 #' @keywords internal
 #'
 youth_name_test <- function(AG,
   demo_names = c("id", "Age", "Sex", "BMI"),
-  demo_interactive = FALSE) {
+  demo_interactive = FALSE, ...) {
 
   if (all(demo_names %in% names(AG))) {
 
@@ -27,10 +28,11 @@ youth_name_test <- function(AG,
       missing_vars,
       ".\n You will now be prompted to enter all demographic variables.",
       "\n (You can ignore those not listed above.)",
-      sep = ""
+      sep = "",
+      ...
     ))
 
-    demo <- input_demographic()
+    demo <- input_demographic(...)
 
     for (i in setdiff(demo_names, names(AG))) {
       AG[ ,i] <- demo[ ,i]
