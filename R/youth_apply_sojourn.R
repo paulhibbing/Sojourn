@@ -12,6 +12,7 @@
 #' @param demo_interactive logical. Input demographics interactively if missing
 #'   variables are identified during format checking?
 #' @param verbose logical. Print processing updates to the console?
+#' @param ... Further arguments passed to \code{\link{youth_name_test}}
 #'
 #' @return The original data frame, plus additional predictions made by the
 #'   Sojourn method
@@ -26,11 +27,11 @@
 #' apply_youth_sojourn(AG = example_data, vm = "Vector.Magnitude", Site = "Hip")
 #'
 apply_youth_sojourn <- function(AG, vm = c("Vector.Magnitude", "ENMO"),
-  Site = c("Hip", "Wrist"), demo_interactive = FALSE, verbose = FALSE) {
+  Site = c("Hip", "Wrist"), demo_interactive = FALSE, verbose = FALSE, ...) {
 
   ## Test Input
 
-    AG <- youth_name_test(AG, demo_interactive = demo_interactive)
+    AG <- youth_name_test(AG, demo_interactive = demo_interactive, ...)
     vm <- match.arg(vm, c("Vector.Magnitude", "ENMO"), TRUE)
     Site <- match.arg(Site, c("Hip", "Wrist", "Error"), TRUE)
     stopifnot(length(vm) == 1, vm %in% names(AG), length(Site) == 1)
