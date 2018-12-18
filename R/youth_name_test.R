@@ -23,14 +23,16 @@ youth_name_test <- function(AG,
 
   if (demo_interactive) {
 
-    svDialogs::dlg_message(paste(
-      "Missing demographic variables: ",
-      missing_vars,
-      ".\n You will now be prompted to enter all demographic variables.",
-      "\n (You can ignore those not listed above.)",
-      sep = "",
+    svDialogs::dlg_message(
+      paste(
+        "Missing demographic variables: ",
+        missing_vars,
+        ".\n You will now be prompted to enter all demographic variables.",
+        "\n (You can ignore those not listed above.)",
+        sep = ""
+      ),
       ...
-    ))
+     )
 
     demo <- input_demographic(...)
 
