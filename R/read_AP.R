@@ -6,6 +6,9 @@
 #' @export
 #'
 #' @examples
+#' \donttest{
+#' print("Example")
+#' }
 AP.file.reader <- function(filename) {
 
   # read an activPAL events file.

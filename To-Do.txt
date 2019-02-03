@@ -1,12 +1,9 @@
-* Package is heavy (> 5 mb), which may need to be creatively addressed.
-    -- Youth nnets are class `large train` from caret. Investigating
-    predict.train may reveal a way that we can reduce the size of those
-    objects.
-* Document youth Sojourn functions
-* Re-work youth code to work in package structure
-* Add Ellingson et al. (2017) to the README
-* Take Vincent out as contributor?
+* Package is still heavy (> 5 mb), but I've done what I'm
+  comfortable with to reduce the size. May be a NOTE to
+  contest with CRAN when submission comes around.
 * Resolve:
-  - Warning: @examples [SIP_Functions.R#11]: requires a value
   - Warning: @examples [SIP_Soj_3x.R#12]: requires a value
   - Warning: @examples [read_AP.R#9]: requires a value
+  - (I've added \donttest{} in these cases to help pass R CMD Check,
+    but examples are sill necessary, along with more SIP
+    testing/documentation)

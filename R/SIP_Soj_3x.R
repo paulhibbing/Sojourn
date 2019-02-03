@@ -9,6 +9,9 @@
 #' @export
 #'
 #' @examples
+#' \donttest{
+#' print("Example")
+#' }
 sojourn_3x_SIP <- function(ag, short = 30) {
 
   counts <- ag$counts

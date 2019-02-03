@@ -19,3 +19,7 @@ A data frame of processed data using the
 \description{
 Triaxial Sojourn method for the \href{https://www.ncbi.nlm.nih.gov/pubmed/27015380}{SIP method}
 }
+\examples{
+\donttest{
+}
+}

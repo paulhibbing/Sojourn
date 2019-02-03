@@ -39,7 +39,13 @@ The functions \link[AGread]{read_AG_counts} and
 }
 \examples{
 data(example_data, package = "Sojourn")
-example_data <- example_data[1:1000, ]
-apply_youth_sojourn(AG = example_data, vm = "Vector.Magnitude", Site = "Hip")
+results_youth_soj <- apply_youth_sojourn(
+  AG = example_data,
+  vm = "Vector.Magnitude",
+  Site = "Hip"
+)
+\dontrun{
+head(results_youth_soj)
+}
 
 }

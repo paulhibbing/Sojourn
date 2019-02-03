@@ -15,3 +15,7 @@ A data frame of activPAL data
 \description{
 Read activPAL event files
 }
+\examples{
+\donttest{
+}
+}

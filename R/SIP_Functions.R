@@ -7,7 +7,6 @@
 #'
 #' @keywords internal
 #'
-#' @examples
 find.transitions <- function(y) {
 
   N <- length(y)
