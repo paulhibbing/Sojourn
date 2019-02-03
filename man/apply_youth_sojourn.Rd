@@ -5,7 +5,7 @@
 \title{Apply the youth Sojourn method}
 \usage{
 apply_youth_sojourn(AG, vm = c("Vector.Magnitude", "ENMO"), Site = c("Hip",
-  "Wrist"), demo_interactive = FALSE, verbose = FALSE)
+  "Wrist"), demo_interactive = FALSE, verbose = FALSE, ...)
 }
 \arguments{
 \item{AG}{a data frame of monitor and demographic data}
@@ -21,6 +21,8 @@ acceleration)}
 variables are identified during format checking?}
 
 \item{verbose}{logical. Print processing updates to the console?}
+
+\item{...}{Further arguments passed to \code{\link{youth_name_test}}}
 }
 \value{
 The original data frame, plus additional predictions made by the
@@ -37,6 +39,7 @@ The functions \link[AGread]{read_AG_counts} and
 }
 \examples{
 data(example_data, package = "Sojourn")
+example_data <- example_data[1:1000, ]
 apply_youth_sojourn(AG = example_data, vm = "Vector.Magnitude", Site = "Hip")
 
 }

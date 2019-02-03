@@ -13,7 +13,7 @@ NULL
 #' @importFrom magrittr %>%
 NULL
 
-#' @importFrom stats acf predict quantile sd var
+#' @importFrom stats acf predict quantile sd var aggregate
 NULL
 
 #' @importFrom dplyr n

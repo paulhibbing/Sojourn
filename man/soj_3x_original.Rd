@@ -25,11 +25,14 @@ Calls the tri-axial Sojourn method from \href{https://www.ncbi.nlm.nih.gov/pubme
 }
 \examples{
 data(example_data, package = "Sojourn")
-soj_3x_original(
+results_3x <- soj_3x_original(
   example_data$axis1,
   example_data$axis2,
   example_data$axis3,
   example_data$Vector.Magnitude
 )
+\dontrun{
+head(results_3x)
+}
 
 }

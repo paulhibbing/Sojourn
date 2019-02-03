@@ -3,13 +3,21 @@
 #' @inheritParams apply_youth_sojourn
 #' @param demo_names character vector of required demographic variable names to
 #'   look for
+#' @param fix_sex_var logical. Should "Sex" be changed to "SexM" and dummy
+#'   coded?
 #'
 #' @return A properly-formatted data frame of monitor data
 #' @keywords internal
 #'
 youth_name_test <- function(AG,
   demo_names = c("id", "Age", "Sex", "BMI"),
-  demo_interactive = FALSE) {
+  demo_interactive = FALSE, fix_sex_var = TRUE) {
+
+  if ("Sex" %in% demo_names & "Sex" %in% names(AG) & fix_sex_var) {
+    demo_names <- gsub("Sex", "SexM", demo_names)
+    names(AG) <- gsub("Sex", "SexM", names(AG))
+    AG$SexM <- ifelse(AG$SexM == "F", 0, 1)
+  }
 
   if (all(demo_names %in% names(AG))) {
 

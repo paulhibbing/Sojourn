@@ -5,7 +5,7 @@
 \title{Check monitor data for required demographic variables}
 \usage{
 youth_name_test(AG, demo_names = c("id", "Age", "Sex", "BMI"),
-  demo_interactive = FALSE)
+  demo_interactive = FALSE, fix_sex_var = TRUE)
 }
 \arguments{
 \item{AG}{a data frame of monitor and demographic data}
@@ -15,6 +15,9 @@ look for}
 
 \item{demo_interactive}{logical. Input demographics interactively if missing
 variables are identified during format checking?}
+
+\item{fix_sex_var}{logical. Should "Sex" be changed to "SexM" and dummy
+coded?}
 }
 \value{
 A properly-formatted data frame of monitor data
