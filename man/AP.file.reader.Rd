@@ -16,6 +16,7 @@ A data frame of activPAL data
 Read activPAL event files
 }
 \examples{
-\donttest{
-}
+AP.file.reader(
+  system.file("sampledata Events.csv", package = "Sojourn")
+)
 }

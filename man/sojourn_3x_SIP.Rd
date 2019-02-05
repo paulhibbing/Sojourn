@@ -20,6 +20,8 @@ A data frame of processed data using the
 Triaxial Sojourn method for the \href{https://www.ncbi.nlm.nih.gov/pubmed/27015380}{SIP method}
 }
 \examples{
-\donttest{
-}
+data(SIP_ag, package = "Sojourn")
+data(SIP_ap, package = "Sojourn")
+data <- Sojourn::enhance_actigraph(SIP_ag, SIP_ap)
+sojourn_3x_SIP(data)
 }

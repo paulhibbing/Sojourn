@@ -1,4 +1,4 @@
-#' Sample data for exploring Sojourn methods
+#' Sample data for exploring original and youth Sojourn methods
 #'
 #' @format A data frame with 79989 rows and 11 variables:
 #' \describe{
@@ -18,3 +18,34 @@
 #'   standing)}
 #' }
 "example_data"
+
+#' ActiGraph sample data for exploring Sojourns Including Posture (SIP) method.
+#'
+#' @format A data frame with 12257 rows and 5 variables:
+#' \describe{
+#'   \item{counts}{Activity counts from the first axis}
+#'   \item{axis2}{Activity counts from the second axis}
+#'   \item{axis3}{Activity counts from the third axis}
+#'   \item{vm}{Vector magnitude of activity counts}
+#'   \item{Time}{POSIX-formatted variable giving the timestamp for each
+#'   observation}
+#' }
+"SIP_ag"
+
+#' activPAL sample data for exploring Sojourns Including Posture (SIP) method
+#'
+#' @format A data frame with 12257 rows and 5 variables:
+#' \describe{
+#'   \item{Time}{POSIX-formatted variable giving the timestamp for each
+#'   observation}
+#'   \item{DataCount}{Integer value giving the index of the sample from
+#'   which the row of data is drawn}
+#'   \item{Interval}{Duration (in seconds) of the interval from one data point
+#'   to the next}
+#'   \item{ActivityCode}{Integer giving the posture activity classification:
+#'   0 is sedentary, 1 is standing, and 2 is stepping}
+#'   \item{CumulativeStepCount}{Integer giving the cumulative step count from
+#'   the start of the file to the current data point.}
+#'   \item{ActivityScore}{Numeric giving MET-hours}
+#' }
+"SIP_ap"
