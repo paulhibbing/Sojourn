@@ -9,9 +9,10 @@
 #' @export
 #'
 #' @examples
-#' \donttest{
-#' print("Example")
-#' }
+#' data(SIP_ag, package = "Sojourn")
+#' data(SIP_ap, package = "Sojourn")
+#' data <- Sojourn::enhance_actigraph(SIP_ag, SIP_ap)
+#' sojourn_3x_SIP(data)
 sojourn_3x_SIP <- function(ag, short = 30) {
 
   counts <- ag$counts
@@ -42,8 +43,8 @@ sojourn_3x_SIP <- function(ag, short = 30) {
     durations = rep(durations, durations),
     perc.soj = NA,
     type = NA,
-    METs = NA,
-    steps = diff(c(0, ag$steps)))
+    METs = NA
+  )
 
   soj.table <- data.frame(durations = durations,
     perc.soj = tapply(ag$counts > 0, sojourns, mean),
@@ -64,7 +65,9 @@ sojourn_3x_SIP <- function(ag, short = 30) {
     scale = scal.1))
   rownames(inact.inputs) <- NULL
 
-  #   predict type using all axes + vm.  i intially had a lot of prediction nnets here (ie different axis) but have removed them and only include the one that looks "the best".  there are definitely others we can use/try
+  #   predict type using all axes + vm.  i intially had a lot of prediction
+  #   nnets here (ie different axis) but have removed them and only include the
+  #   one that looks "the best".  there are definitely others we can use/try
 
   #   remove NaNs created by scaling by 1/0
   inact.inputs <- inact.inputs[,-c(1, 2, 13)]
@@ -90,8 +93,10 @@ sojourn_3x_SIP <- function(ag, short = 30) {
   soj.table$METs[(soj.table$type==3)&(soj.table$perc.soj<=0.05)] <- 1
   soj.table$METs[(soj.table$type==3)&(soj.table$perc.soj>0.05)] <- 1.2
 
-  #   this identifies activities for nnet all - 6 means activity
-  #   i realize i am getting lag1 differently than i do for inactivities...i should change to use function throughout.
+  #   this identifies activities for nnet all - 6 means activity i realize i am
+  #   getting lag1 differently than i do for inactivities...i should change to
+  #   use function throughout.
+
   inputs <- prep.nnetinputs(ag[soj.table$type[sojourns] %in% c(2, 4, 6),],
     sojourns[soj.table$type[sojourns] %in% c(2, 4, 6)],
     acf.lag1)
@@ -117,8 +122,15 @@ sojourn_3x_SIP <- function(ag, short = 30) {
     trans.table$AP.steps <- diff(c(0, ag$AP.steps))
   }
   row.names(trans.table) <- strftime(ag$Time, "%Y-%m-%dT%H:%M:%S%z")
-  header <- attr(ag, "AG.header")
-  header <- append("Processed with sojourns", header, length(header)-1)
-  attr(trans.table, "AG.header") <- header
+
+  if (is.null(attr(ag, "AG.header"))) {
+    attr(trans.table, "AG.header") <- "Processed with sojourns"
+  } else {
+    header <- attr(trans.table, "AG.header")
+    attr(trans.table, "AG.header") <- append(
+      "Processed with sojourns", header, length(header)-1
+    )
+  }
+
   return(trans.table)
 }

@@ -88,6 +88,55 @@ combine.sojourns <- function(durations, short) {
   return(durations)
 }
 
+#' Check the formatting of a data frame for use in the SIP pipeline
+#'
+#' @param frame The data frame to check
+#' @param expected_var_names character vector. The expected variable names in
+#'   \code{frame}
+#' @param expected_classes character vector. The expected variable classes in
+#'   \code{frame}
+#' @param verbose logical. Print information to console?
+#'
+#' @keywords internal
+#'
+SIP_frame_test <- function(
+  frame, expected_var_names, expected_classes, verbose
+) {
+
+  actual_var_names <- names(frame)
+  actual_classes <- unname(
+    unlist(
+      sapply(frame, function(x) class(x)[1])
+    )
+  )
+  actual_classes <- ifelse(
+    grepl("POSIX", actual_classes), "POSIX...", actual_classes
+  )
+
+  err_msg <- paste(
+    "Expecting a ", length(expected_var_names),
+    "-column data frame with names:\n    c(\"",
+    paste(expected_var_names, collapse = "\", \""),
+    "\")\n  and immediate classes:\n    c(\"",
+    paste(expected_classes, collapse = "\", \""),
+    "\")",
+    sep = ""
+  )
+
+  if (any(
+    !identical(expected_var_names, actual_var_names),
+    !identical(expected_classes, actual_classes)
+  )) {
+
+    if (verbose) print(actual_classes)
+    stop(err_msg)
+
+  }
+
+  invisible()
+
+}
+
 #' Combine ActiGraph and activPAL data
 #'
 #' Merge data streams for separate monitors in the
@@ -96,9 +145,25 @@ combine.sojourns <- function(durations, short) {
 #' @param ag ActiGraph data
 #' @param ap activPAL data
 #'
-#' @keywords internal
+#' @export
 #'
-enhance.actigraph <- function(ag,ap) {
+#' @examples
+#' data(SIP_ag, package = "Sojourn")
+#' data(SIP_ap, package = "Sojourn")
+#' enhance_actigraph(SIP_ag, SIP_ap)
+enhance_actigraph <- function(ag,ap) {
+
+  SIP_frame_test(
+    ag,
+    expected_var_names = c(
+      "counts", "axis2", "axis3", "vm", "Time"
+    ),
+    # verbose = TRUE,
+    expected_classes = c(
+      "integer", "integer", "integer", "numeric", "POSIX..."
+    )
+  )
+
 
   ap$ActivityBlocks <- cumsum(
     c(TRUE, as.logical(diff(ap$ActivityCode)))
@@ -115,6 +180,7 @@ enhance.actigraph <- function(ag,ap) {
     zoo::na.locf(temp)[ag$Time]
 
   return(ag)
+
 }
 
 #' Shape data for input into the neural networks

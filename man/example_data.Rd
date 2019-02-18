@@ -3,7 +3,7 @@
 \docType{data}
 \name{example_data}
 \alias{example_data}
-\title{Sample data for exploring Sojourn methods}
+\title{Sample data for exploring original and youth Sojourn methods}
 \format{A data frame with 79989 rows and 11 variables:
 \describe{
   \item{id}{An example ID for the data set}
@@ -25,6 +25,6 @@
 example_data
 }
 \description{
-Sample data for exploring Sojourn methods
+Sample data for exploring original and youth Sojourn methods
 }
 \keyword{datasets}

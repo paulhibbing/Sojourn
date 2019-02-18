@@ -4,7 +4,10 @@
 \alias{input_demographic}
 \title{Interactively input demographic information}
 \usage{
-input_demographic()
+input_demographic(...)
+}
+\arguments{
+\item{...}{Further arguments passed to svDialogs functions}
 }
 \value{
 A data frame containing an ID, attachment site of the monitor (hip or

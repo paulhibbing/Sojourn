@@ -14,21 +14,25 @@ Authors@R: c(
 Depends: R (>= 3.1.0)
 Description: Provides a simple way for utilizing Sojourn methods for
     accelerometer processing, as detailed in Lyden K, Keadle S,
-    Staudenmayer J, & Freedson P (2014) <doi:10.1249/MSS.0b013e3182a42a2d>
-    and Hibbing PR, Ellingson LD, Dixon PM, & Welk GJ (2018)
-    <doi:10.1249/MSS.0000000000001486>.
+    Staudenmayer J, & Freedson P (2014) <doi:10.1249/MSS.0b013e3182a42a2d>,
+    Ellingson LD, Schwabacher IJ, Kim Y, Welk GJ, & Cook DB (2016)
+    <doi:10.1249/MSS.0000000000000915>, and Hibbing PR, Ellingson LD,
+    Dixon PM, & Welk GJ (2018) <doi:10.1249/MSS.0000000000001486>. File
+    reading is not included in the functionality of the Sojourn package.
+    For help with that preliminary step, users are directed to the packages
+    AGread (for ActiGraph files) and activpalProcessing (for activPAL files).
 License: GPL-3 + file LICENSE
 Encoding: UTF-8
 LazyData: true
 Imports: AGread,
-    utils,
-    stats,
-    nnet (>= 7.3),
     caret,
     dplyr (>= 0.7),
-    svDialogs (>= 1.0),
     magrittr (>= 1.5),
+    nnet (>= 7.3),
     rlang (>= 0.2),
+    stats,
+    svDialogs (>= 1.0),
+    utils,
     zoo (>= 1.8)
 RoxygenNote: 6.0.1
 URL: http://github.com/paulhibbing/Sojourn
