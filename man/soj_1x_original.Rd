@@ -31,8 +31,7 @@ Calls the uni-axial Sojourn method from \href{https://www.ncbi.nlm.nih.gov/pubme
 \examples{
 data(example_data, package = "Sojourn")
 results_1x <- soj_1x_original(example_data$axis1)
-\dontrun{
+
 head(results_1x)
-}
 
 }
