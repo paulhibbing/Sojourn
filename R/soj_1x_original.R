@@ -16,9 +16,8 @@
 #' @examples
 #' data(example_data, package = "Sojourn")
 #' results_1x <- soj_1x_original(example_data$axis1)
-#' \dontrun{
+#'
 #' head(results_1x)
-#' }
 #'
 soj_1x_original <- function(counts,perc.cut=0.05,perc.cut.2=0.12,
   perc.cut.3=0.55,too.short=10,sit.cut=90,long.soj=120) {

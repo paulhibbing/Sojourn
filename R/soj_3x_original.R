@@ -19,9 +19,8 @@
 #'   example_data$axis3,
 #'   example_data$Vector.Magnitude
 #' )
-#' \dontrun{
+#'
 #' head(results_3x)
-#' }
 #'
 soj_3x_original <- function(counts, counts.2,
   counts.3, vect.mag, short=30) {

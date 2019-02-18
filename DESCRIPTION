@@ -33,3 +33,5 @@ Imports: AGread,
 RoxygenNote: 6.0.1
 URL: http://github.com/paulhibbing/Sojourn
 BugReports: http://github.com/paulhibbing/Sojourn/issues
+Suggests: 
+    testthat
