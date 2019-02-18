@@ -1,9 +1,0 @@
-* Package is still heavy (> 5 mb), but I've done what I'm
-  comfortable with to reduce the size. May be a NOTE to
-  contest with CRAN when submission comes around.
-* Resolve:
-  - Warning: @examples [SIP_Soj_3x.R#12]: requires a value
-  - Warning: @examples [read_AP.R#9]: requires a value
-  - (I've added \donttest{} in these cases to help pass R CMD Check,
-    but examples are sill necessary, along with more SIP
-    testing/documentation)

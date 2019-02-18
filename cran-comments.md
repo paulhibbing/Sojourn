@@ -1,23 +1,78 @@
 ## Test environments
-* local OS X install, R 3.5.0
-* ubuntu 12.04 (on travis-ci), R 3.5.0
+* local Windows 10 install, R 3.5.0
+* ubuntu 14.04.5 (on travis-ci), R 3.5.2
 * win-builder (devel and release)
 
 ## R CMD check results
 
-0 errors | 0 warnings | 1 note
+0 ERRORs | 0 WARNINGs | 4 NOTEs
 
-* This is a new release.
+* checking CRAN incoming feasibility ... NOTE
+Maintainer: 'Paul R. Hibbing <paulhibbing@gmail.com>'
+
+New submission
+
+License components with restrictions and base license permitting such:
+  GPL-3 + file LICENSE
+File 'LICENSE':
+  GNU General Public License
+  ==========================
+  
+  _Version 3, 29 June 2007_  
+  _Copyright © 2007 Free Software Foundation, Inc. &lt;<http://fsf.org/>&gt;_
+  
+  [...]
+
+
+Possibly mis-spelled words in DESCRIPTION:
+  AGread (23:5)
+  Accelerometer (3:55)
+  ActiGraph (3:45, 23:17)
+  Ellingson (18:5, 19:57)
+  Freedson (17:23)
+  GJ (18:47, 20:22)
+  Hibbing (19:45)
+  IJ (18:31)
+  Keadle (16:55)
+  LD (18:15, 19:67)
+  Lyden (16:46)
+  Schwabacher (18:19)
+  Staudenmayer (17:5)
+  Welk (18:42, 20:17)
+  accelerometer (16:5)
+  activPAL (23:62)
+  activpalProcessing (23:38)
+
+(This is the first submission of the Sojourn package. The possibly mis-spelled
+    words are package names, sensor names, or author names.)
+
+
+* checking installed package size ... NOTE
+  installed size is  5.4Mb
+  sub-directories of 1Mb or more:
+    R   4.9Mb
+
+(This package includes models as internal data, some of which are large, e.g.
+    four neural networks ~4MB each. Some measures have been taken to reduce
+    object size, but the package is still heavy. The objects are not intended
+    for public use, and so a dedicated data package is undesirable. Therefore,
+    they have been left in the current submission.)
+
+** running examples for arch 'i386' ... [36s] NOTE
+Examples with CPU or elapsed time > 10s
+                     user system elapsed
+apply_youth_sojourn 20.54   0.74   22.44
+
+(This example is wrapped in \donttest{})
+
+** running examples for arch 'x64' ... [37s] NOTE
+Examples with CPU or elapsed time > 10s
+                     user system elapsed
+apply_youth_sojourn 23.35   0.76   24.65
+
+(This example is wrapped in \donttest{})
+
 
 ## Reverse dependencies
 
 This is a new release, so there are no reverse dependencies.
-
----
-
-* I have run R CMD check on the NUMBER downstream dependencies.
-  (Summary at ...). 
-  
-* FAILURE SUMMARY
-
-* All revdep maintainers were notified of the release on RELEASE DATE.
