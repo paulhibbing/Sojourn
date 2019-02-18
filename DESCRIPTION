@@ -8,8 +8,8 @@ Authors@R: c(
 		  role = c("aut","cre")),
 		person(c("Kate"), "Lyden", email = "katelyden6@gmail.com",
 		  role = c("aut")),
-    person(c("Isaac", 
-    "J."), "Schwabacher", role = c("aut"))
+    person(c("Isaac", "J."), "Schwabacher",
+      role = c("aut"))
     )
 Depends: R (>= 3.1.0)
 Description: Provides a simple way for utilizing Sojourn methods for
