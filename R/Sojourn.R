@@ -29,3 +29,7 @@ NULL
 
 #' @importFrom rlang .data
 NULL
+
+#' @import nnet
+NULL
+
