@@ -1,0 +1,20 @@
+citHeader("To cite package `Sojourn` in publications use:")
+
+citEntry(
+  entry        = "Misc",
+  title        = paste(
+      "Sojourn: Apply Sojourn methods for processing",
+      "ActiGraph accelerometer data"
+  ),
+  author       = personList(as.person("Paul R. Hibbing")),
+  year         = "2019",
+  url          = "https://github.com/paulhibbing/Sojourn",
+
+  textVersion  =
+  paste(
+    "Paul R. Hibbing (2019).",
+    "Sojourn: Apply Sojourn methods for processing",
+    "ActiGraph accelerometer data",
+    "URL https://github.com/paulhibbing/Sojourn."
+  )
+)
