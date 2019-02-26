@@ -38,4 +38,5 @@ RoxygenNote: 6.1.1
 URL: http://github.com/paulhibbing/Sojourn
 BugReports: http://github.com/paulhibbing/Sojourn/issues
 Suggests: 
-    testthat
+    testthat,
+    Sojourn.Data
