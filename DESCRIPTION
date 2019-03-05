@@ -40,3 +40,4 @@ BugReports: http://github.com/paulhibbing/Sojourn/issues
 Suggests: 
     testthat,
     Sojourn.Data
+Remotes: paulhibbing/Sojourn.Data
