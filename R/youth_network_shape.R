@@ -41,18 +41,16 @@ youth_network_shape <- function(data, sojourns = TRUE, RAW = FALSE,
 
     if (!"sojourns" %in% names(data)) {
 
-      data <-
-        cbind(data,
-          get_youth_sojourns(
-            vm = data$Vector.Magnitude,
-            Output = switch(RAW + 1, "Counts", "Raw"),
-            epoch = epoch
-          ))
-      if (verbose) {
+      data <- cbind(
+        data,
+        get_youth_sojourns(
+          vm = data$Vector.Magnitude,
+          Output = switch(RAW + 1, "Counts", "Raw"),
+          epoch = epoch
+        )
+      )
 
-        cat(messager(6))
-
-      }
+      if (verbose) cat(messager(6))
 
     } else{
 
@@ -60,7 +58,11 @@ youth_network_shape <- function(data, sojourns = TRUE, RAW = FALSE,
       if (length(unique(table(data$sojourns)))==1 &
           unique(table(data$sojourns))[1]==15) {
 
-        message('Looks like this is in 15-second blocks. Returning NULL.')
+        message(paste(
+          "Looks like this is in 15-second blocks.",
+          "Returning NULL."
+        ))
+
         return(NULL)
 
       }
@@ -70,11 +72,12 @@ youth_network_shape <- function(data, sojourns = TRUE, RAW = FALSE,
 
   #if (RAW) Time <- data$timestamp else
   Time <- data[ ,time_var]
-  groups <-
-    c('id', 'Visit', 'sojourns')[c('id', 'Visit', 'sojourns') %in% names(data)]
+  groups <- c("id", "Visit", "sojourns")[
+    c("id", "Visit", "sojourns") %in% names(data)
+  ]
 
-  data <-
-    data %>% dplyr::group_by_at(.vars = groups) %>%
+  data <- data %>%
+    dplyr::group_by_at(.vars = groups) %>%
     dplyr::summarise(
       VM_counts = sum(.data$Vector.Magnitude),
       VM_Mean = mean(.data$Vector.Magnitude),
@@ -104,16 +107,16 @@ youth_network_shape <- function(data, sojourns = TRUE, RAW = FALSE,
     stringsAsFactors = FALSE
   )
 
-  data <-
-    data.frame(data[, unlist(groups)], noZeros, stringsAsFactors = FALSE)
+  data <- data.frame(
+    data[, unlist(groups)],
+    noZeros,
+    stringsAsFactors = FALSE
+  )
 
-  data$scores.Comp.1 <- NA ##This is my workaround since I'm not using princomp anymore
+  data$scores.Comp.1 <- NA
+  ## ^^ This is my workaround since I'm not using princomp anymore
 
-  if (verbose) {
-
-    cat(messager(8))
-
-  }
+  if (verbose) cat(messager(8))
 
   if (RAW) {
 
@@ -134,14 +137,13 @@ youth_network_shape <- function(data, sojourns = TRUE, RAW = FALSE,
 
   } else{
 
-    Time <-
-      tapply(
-        as.character(Time),
-        unlist(
-          mapply(function(x,y) rep(x,y),
-            x = data[, switch(sojourns+1, "Block", "sojourns")],
-            y = data$duration, SIMPLIFY = FALSE)),
-        function(x) x[1]
+    Time <- tapply(
+      as.character(Time),
+      unlist(
+        mapply(function(x,y) rep(x,y),
+          x = data[, switch(sojourns+1, "Block", "sojourns")],
+          y = data$duration, SIMPLIFY = FALSE)),
+      function(x) x[1]
     )
 
   }
@@ -149,4 +151,5 @@ youth_network_shape <- function(data, sojourns = TRUE, RAW = FALSE,
   data[ ,time_var] <- Time
 
   return(data)
+
 }

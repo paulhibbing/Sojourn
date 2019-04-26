@@ -23,7 +23,6 @@
 #' @export
 #'
 #' @examples
-#' \donttest{
 #'   data(example_data, package = "Sojourn")
 #'   results_youth_soj <- apply_youth_sojourn(
 #'     AG = example_data,
@@ -31,30 +30,38 @@
 #'     Site = "Hip"
 #'   )
 #'   head(results_youth_soj)
-#' }
 #'
 apply_youth_sojourn <- function(AG, vm = c("Vector.Magnitude", "ENMO"),
   Site = c("Hip", "Wrist"), demo_interactive = FALSE, verbose = FALSE, ...) {
 
+  if (!requireNamespace("Sojourn.Data", quietly = TRUE)) {
+    stop(paste(
+      "You must install the package `Sojourn.Data`",
+      "to use this function."
+    ))
+  }
+
   ## Test Input
 
     AG <- youth_name_test(AG, demo_interactive = demo_interactive, ...)
-    vm <- match.arg(vm, c("Vector.Magnitude", "ENMO"), TRUE)
-    Site <- match.arg(Site, c("Hip", "Wrist", "Error"), TRUE)
+    vm <- match.arg(vm, c("Vector.Magnitude", "ENMO", "Error"))
+    Site <- match.arg(Site, c("Hip", "Wrist", "Error"))
     stopifnot(length(vm) == 1, vm %in% names(AG), length(Site) == 1)
-
 
   ## Identify which ANN to use
 
-    Output <-
-      switch(vm, "Vector.Magnitude" = "Counts", "ENMO" = "Raw")
+    Output <- switch(
+      vm,
+      "Vector.Magnitude" = "Counts",
+      "ENMO" = "Raw"
+    )
 
     ANN <- paste(
         tolower(Site),
         Output,
         sep = ''
     )
-    ANN <- paste("youth", ANN, sep = "_")
+    ANN <- paste("Sojourn.Data::youth", ANN, sep = "_")
 
     intensity.fit <- eval(parse(text = ANN))
     FeatureSet <- intensity.fit$coefnames
@@ -62,21 +69,19 @@ apply_youth_sojourn <- function(AG, vm = c("Vector.Magnitude", "ENMO"),
 
   ## Mark the Sojourns
 
-    if (verbose) {
-      cat(messager(2))
-    }
+    if (verbose)  cat(messager(2))
 
-      AG <- cbind(AG,
-        get_youth_sojourns(AG[,vm],
-          Output = Output,
-          Site = Site,
-          verbose = verbose
-        )
+    AG <- cbind(
+      AG,
+      get_youth_sojourns(
+        AG[,vm],
+        Output = Output,
+        Site = Site,
+        verbose = verbose
       )
+    )
 
-    if (verbose) {
-      cat(messager(3))
-    }
+    if (verbose) cat(messager(3))
 
   ## Get the predictions
 
@@ -99,21 +104,20 @@ apply_youth_sojourn <- function(AG, vm = c("Vector.Magnitude", "ENMO"),
       type = "class"
     )
 
-    y_soj <-
-      predict(
-        intensity.fit,
-        cbind(
-          youth_network_shape(
-            data = AG,
-            sojourns = TRUE,
-            RAW = switch(Output, "Counts" = FALSE, "Raw" = TRUE),
-            verbose = verbose,
-            first_print = FALSE
-          ),
-          meta
+    y_soj <- predict(
+      intensity.fit,
+      cbind(
+        youth_network_shape(
+          data = AG,
+          sojourns = TRUE,
+          RAW = switch(Output, "Counts" = FALSE, "Raw" = TRUE),
+          verbose = verbose,
+          first_print = FALSE
         ),
-        type = "class"
-      )
+        meta
+      ),
+      type = "class"
+    )
 
     AG$youth_sojourn_intensity <- youth_sojourn_tree(
       AG[ ,vm], y_15, y_soj
@@ -121,11 +125,14 @@ apply_youth_sojourn <- function(AG, vm = c("Vector.Magnitude", "ENMO"),
 
     AG <- cbind(AG, meta)
     names(AG) <- gsub("SexM", "Sex", names(AG))
+
     if (all(AG$Sex %in% 0:1)) {
       AG$Sex <- ifelse(AG$Sex == 0, "F", "M")
     }
 
     first_names <- c("id", "Sex", "Age", "BMI")
     AG <- AG[ ,c(first_names, setdiff(names(AG), first_names))]
+
     return(AG)
+
 }

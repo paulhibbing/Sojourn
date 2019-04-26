@@ -39,7 +39,6 @@ The functions \link[AGread]{read_AG_counts} and
   monitor-specific portion of the \code{AG} data frame.
 }
 \examples{
-\donttest{
   data(example_data, package = "Sojourn")
   results_youth_soj <- apply_youth_sojourn(
     AG = example_data,
@@ -47,6 +46,5 @@ The functions \link[AGread]{read_AG_counts} and
     Site = "Hip"
   )
   head(results_youth_soj)
-}
 
 }

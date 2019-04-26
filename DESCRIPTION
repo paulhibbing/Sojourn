@@ -21,7 +21,7 @@ Description: Provides a simple way for utilizing Sojourn methods for
     reading is not included in the functionality of the Sojourn package.
     For help with that preliminary step, users are directed to the packages
     AGread (for ActiGraph files) and activpalProcessing (for activPAL files).
-License: GPL-3 + file LICENSE
+License: MIT + file LICENSE
 Encoding: UTF-8
 LazyData: true
 Imports: AGread,
@@ -37,7 +37,6 @@ Imports: AGread,
 RoxygenNote: 6.1.1
 URL: http://github.com/paulhibbing/Sojourn
 BugReports: http://github.com/paulhibbing/Sojourn/issues
-Suggests: 
+Suggests:
     testthat,
     Sojourn.Data
-Remotes: paulhibbing/Sojourn.Data

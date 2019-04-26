@@ -4,7 +4,7 @@
 \alias{compute.bouts.info}
 \title{Summarize outcomes from data processed using the Sojourn method}
 \usage{
-compute.bouts.info(est.mets, units = "secs")
+compute.bouts.info(est.mets, units = c("secs", "mins"))
 }
 \arguments{
 \item{est.mets}{numeric vector of predicted metabolic equivalents}

@@ -21,9 +21,10 @@
 #'
 #' compute.bouts.info(example_data$METs)
 #'
-compute.bouts.info <- function(est.mets, units="secs") {
-  # est.mets is a vector of estimated METs
-  # units = "secs" or "mins" - the amount of time each entry in est.mets represents
+compute.bouts.info <- function(est.mets, units=c("secs", "mins")) {
+
+  units <- match.arg(units)
+
   if(units == "secs") {
     time.units <- 60
   } else {
@@ -66,9 +67,11 @@ compute.bouts.info <- function(est.mets, units="secs") {
   bout.ends <- c()
 
   # Bouts can occur in two ways:
-  # 1) Multiple periods of >3 MET activity with one or more short periods or low activity in between.
-  #    The combined time of low activity is 2 minutes or less and the total time 10 minutes or more.
-  # 2) A period of 10 or more uninterrupted minutes of >3 MET activity with large periods of low activity before and after.
+  # 1) Multiple periods of >3 MET activity with one or more short periods or low
+  #     activity in between. The combined time of low activity is 2 minutes or less
+  #     and the total time 10 minutes or more.
+  # 2) A period of 10 or more uninterrupted minutes of >3 MET activity with large
+  #     periods of low activity before and after.
 
   # Search for bouts of the first type:
 
@@ -101,7 +104,8 @@ compute.bouts.info <- function(est.mets, units="secs") {
     # since we ended up not including the corresponding inactive period in our possible-bout.
     j <- j - 2
 
-    # if this possible bout would have already been found by starting from an earlier index, forget about it
+    # if this possible bout would have already been found by starting from an
+    # earlier index, forget about it
     if(i > 2) {
       if(current.bout.inactive.time + durations[i - 2] <= 2*time.units) {
         current.bout.inactive.time <- 0

@@ -26,8 +26,10 @@ youth_name_test <- function(AG,
 
   }
 
-  missing_vars <-
-    paste(setdiff(demo_names, names(AG)), collapse = ", ")
+  missing_vars <- paste(
+    setdiff(demo_names, names(AG)),
+    collapse = ", "
+  )
 
   if (demo_interactive) {
 

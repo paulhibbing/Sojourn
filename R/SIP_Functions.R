@@ -51,8 +51,8 @@ combine.sojourns <- function(durations, short) {
   #   combine too short sojourns with neighboring sojourn.
   #   this loop repeats until there are no more too short sojourns
 
-  repeat
-  {
+  repeat {
+
     sojourns <- 1:length(durations)
     too.short <- sojourns[durations<short]
     ts <- length(too.short)
@@ -66,15 +66,22 @@ combine.sojourns <- function(durations, short) {
     durations.first.neighbors <- durations[too.short-1]
     durations.second.neighbors <- durations[too.short+1]
 
-    too.short.inds.first <- too.short[durations.first.neighbors <=
-        durations.second.neighbors]
-    too.short.inds.second <- too.short[durations.first.neighbors >
-        durations.second.neighbors]
+    too.short.inds.first <- too.short[
+      durations.first.neighbors <=
+        durations.second.neighbors
+    ]
+    too.short.inds.second <- too.short[
+      durations.first.neighbors >
+        durations.second.neighbors
+    ]
 
     sojourns[too.short.inds.first] <- too.short.inds.first-1
     sojourns[too.short.inds.second] <- too.short.inds.second+1
 
-    # deal with instances where need to combine more than 2 sojourns - i.e. short sojourn became first neighbor, and then sojourn before first neighbor also becomes that sojourn via second neighbor grouping - want all 3 of these sojourns to be combined.
+    # deal with instances where need to combine more than 2 sojourns - i.e.
+    # short sojourn became first neighbor, and then sojourn before first
+    # neighbor also becomes that sojourn via second neighbor grouping - want all
+    # 3 of these sojourns to be combined.
 
     inds.order <- (1:(length(sojourns)-1))[diff(sojourns)<0]
     sojourns[inds.order+1] <- sojourns[inds.order]
@@ -86,6 +93,7 @@ combine.sojourns <- function(durations, short) {
   }
 
   return(durations)
+
 }
 
 #' Check the formatting of a data frame for use in the SIP pipeline
@@ -196,15 +204,34 @@ enhance_actigraph <- function(ag,ap) {
 #'
 prep.nnetinputs <- function(ag, sojourns, lag.fun) {
 
-  inputs <- do.call(data.frame, aggregate(ag[1:4], list(sojourns),
-    function(x)
-    {
-      c(X = quantile(x, probs = c(.1, .25, .5, .75, .9)),
-        acf = lag.fun(x))
-    })[-1])
+  inputs <- do.call(
+    data.frame,
+    aggregate(
+      ag[1:4],
+      list(sojourns),
+      function(x) {
+
+      c(
+        X = quantile(x, probs = c(.1, .25, .5, .75, .9)),
+        acf = lag.fun(x)
+      )
+
+      }
+    )[-1]
+  )
+
   # for consistency with the existing data
-  names(inputs) <- do.call(paste0, expand.grid(
-    c(paste0("X", c(10, 25, 50, 75, 90)), "acf"), ".", c("", 2, 3, "vm")))
+  names(inputs) <- do.call(
+    paste0,
+    expand.grid(
+      c(
+        paste0("X", c(10, 25, 50, 75, 90)),
+        "acf"
+      ),
+      ".",
+      c("", 2, 3, "vm")
+    )
+  )
   names(inputs)[6] <- "acf"
   inputs$inact.durations <- tapply(sojourns, sojourns, length)
   #    # The original code *appears* to replace NAs with column means, but

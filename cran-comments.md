@@ -12,18 +12,6 @@ Maintainer: 'Paul R. Hibbing <paulhibbing@gmail.com>'
 
 New submission
 
-License components with restrictions and base license permitting such:
-  GPL-3 + file LICENSE
-File 'LICENSE':
-  GNU General Public License
-  ==========================
-  
-  _Version 3, 29 June 2007_  
-  _Copyright © 2007 Free Software Foundation, Inc. &lt;<http://fsf.org/>&gt;_
-  
-  [...]
-
-
 Possibly mis-spelled words in DESCRIPTION:
   AGread (23:5)
   Accelerometer (3:55)
@@ -45,19 +33,7 @@ Possibly mis-spelled words in DESCRIPTION:
 
 (This is the first submission of the Sojourn package. The possibly mis-spelled
     words are package names, sensor names, or author names.)
-
-
-* checking installed package size ... NOTE
-  installed size is  5.4Mb
-  sub-directories of 1Mb or more:
-    R   4.9Mb
-
-(This package includes models as internal data, some of which are large, e.g.
-    four neural networks ~4MB each. Some measures have been taken to reduce
-    object size, but the package is still heavy. The objects are not intended
-    for public use, and so a dedicated data package is undesirable. Therefore,
-    they have been left in the current submission.)
-
+    
 ** running examples for arch 'i386' ... [36s] NOTE
 Examples with CPU or elapsed time > 10s
                      user system elapsed
