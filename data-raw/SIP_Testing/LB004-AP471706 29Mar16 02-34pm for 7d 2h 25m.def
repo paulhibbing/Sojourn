@@ -1,0 +1,24 @@
+"DataFileName","O:\KINES\HealthCoach\CLBP Study\Objective_Physical_Activity_Data\LB004\Baseline\LB004-AP471706 29Mar16 02-34pm for 7d 2h 25m.datx"
+"SerialNumber","aP431706"
+"Software version","7.2.32 Objectively Quantifying Physical Activity"
+"CompressionFactor",0
+"DataTotalCount",6168417
+"PredictedSamples",0
+"Event Total",25174
+"Download check",0
+"Data not written",0
+"TimeCorrectionFactor",0
+"SamplingFrequency",10
+"SensorVertical",150
+"SensorHorizontal",1
+"SensorInverted",0
+"MinimumSittingPeriod",10
+"MinimumUprightPeriod",10
+"MaximumActivStepPeriod",0
+"CadenceActivStepDuration",5
+"StandToSitThresholdPercentage",30
+"SitToStandThresholdPercentage",50
+"StepThresholdPercentage",15
+"PeakBand",0
+"StartTime",#2016-03-29 14:34:04#
+"StopTime",#2016-04-05 16:59:03#
