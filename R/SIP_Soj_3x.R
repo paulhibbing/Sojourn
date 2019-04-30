@@ -22,11 +22,13 @@ sojourn_3x_SIP <- function(ag, short = 30) {
     ))
   }
 
-  counts <- ag$counts
+  y <- ag$counts
   counts.2 <- ag$axis2
   counts.3 <- ag$axis3
   vect.mag <- ag$vm
-  y <- counts
+
+  used_vars <- c("counts", "axis2", "axis3", "vm")
+  ag$Date <- NULL
 
   durations <- find.transitions(y)
   durations <- combine.sojourns(durations, short)
@@ -55,7 +57,7 @@ sojourn_3x_SIP <- function(ag, short = 30) {
 
   soj.table <- data.frame(
     durations = durations,
-    perc.soj = tapply(ag$counts > 0, sojourns, mean),
+    perc.soj = tapply(y > 0, sojourns, mean),
     type = 6,
     METs = NA
   )
@@ -165,10 +167,35 @@ sojourn_3x_SIP <- function(ag, short = 30) {
 
   if("ActivityCode" %in% names(ag)) {
     trans.table$ActivityCode <- ag$ActivityCode
-    trans.table$AP.steps <- diff(c(0, ag$AP.steps))
+    ag$ActivityCode <- NULL
+    names(ag) <- gsub(
+      "CumulativeStepCount", "AP_Steps",
+      gsub(
+        "AP.steps", "AP_Steps",
+        names(ag), ignore.case = TRUE
+      )
+    )
+    trans.table$AP_Steps <- diff(c(0, ag$AP_Steps))
+    ag$ActivityBlocks <- NULL
+    ag$AP_Steps <- NULL
   }
 
-  row.names(trans.table) <- strftime(ag$Time, "%Y-%m-%dT%H:%M:%S%z")
+  first_names <- c("Time", setdiff(names(ag), "Time"))
+  ag <- ag[ ,first_names]
+
+  names(ag) <- gsub("^Time$", "Timestamp", names(ag))
+  names(ag) <- gsub("^axis", "counts.", names(ag))
+  names(ag) <- gsub("^vm$", "vect.mag", names(ag))
+
+  SIP_names <- c(
+    "sojourns", "durations", "perc.soj", "METs",
+    "ActivityCode", "AP_Steps"
+  )
+  SIP_names <- SIP_names[SIP_names %in% names(trans.table)]
+
+
+  trans.table <- cbind(ag, trans.table[ ,SIP_names])
+  row.names(trans.table) <- NULL
 
   if (is.null(attr(ag, "AG.header"))) {
     attr(trans.table, "AG.header") <- "Processed with sojourns"

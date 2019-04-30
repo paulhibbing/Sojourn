@@ -103,13 +103,48 @@ combine.sojourns <- function(durations, short) {
 #'   \code{frame}
 #' @param expected_classes character vector. The expected variable classes in
 #'   \code{frame}
-#' @param verbose logical. Print information to console?
+#' @inheritParams enhance_actigraph
 #'
 #' @keywords internal
 #'
 SIP_frame_test <- function(
   frame, expected_var_names, expected_classes, verbose
 ) {
+
+  AGread_names <- c(
+    "Axis1", "Axis2", "Axis3",
+    "Vector.Magnitude", "Timestamp"
+  )
+
+  if (all(AGread_names %in% names(frame))) {
+
+    frame$Time <- NULL
+    names(frame) <- ifelse(
+      names(frame) %in% AGread_names,
+      sapply(
+        names(frame),
+        function(x) {
+          switch(
+            x, "Axis1" = "counts",
+            "Axis2" = "axis2",
+            "Axis3" = "axis3",
+            "Vector.Magnitude" = "vm",
+            "Timestamp" = "Time"
+          )
+        }
+      ),
+      names(frame)
+    )
+
+    stopifnot(
+      all(expected_var_names %in% names(frame))
+    )
+
+    other_vars <- setdiff(names(frame), expected_var_names)
+    other_vars <- frame[ ,other_vars]
+    frame <- frame[ ,expected_var_names]
+
+  }
 
   actual_var_names <- names(frame)
   actual_classes <- unname(
@@ -141,7 +176,8 @@ SIP_frame_test <- function(
 
   }
 
-  invisible()
+  frame <- cbind(frame, other_vars)
+  frame
 
 }
 
@@ -152,6 +188,7 @@ SIP_frame_test <- function(
 #'
 #' @param ag ActiGraph data
 #' @param ap activPAL data
+#' @param verbose logical. Print information to console?
 #'
 #' @export
 #'
@@ -159,19 +196,23 @@ SIP_frame_test <- function(
 #' data(SIP_ag, package = "Sojourn")
 #' data(SIP_ap, package = "Sojourn")
 #' enhance_actigraph(SIP_ag, SIP_ap)
-enhance_actigraph <- function(ag,ap) {
+enhance_actigraph <- function(ag,ap, verbose = FALSE) {
 
-  SIP_frame_test(
-    ag,
+  ag <- SIP_frame_test(
+    frame = ag,
     expected_var_names = c(
       "counts", "axis2", "axis3", "vm", "Time"
     ),
-    # verbose = TRUE,
     expected_classes = c(
       "integer", "integer", "integer", "numeric", "POSIX..."
-    )
+    ),
+    verbose = verbose
   )
 
+  stopifnot(
+    lubridate::tz(ag$Timestamp) ==
+      lubridate::tz(ap$Time)
+  )
 
   ap$ActivityBlocks <- cumsum(
     c(TRUE, as.logical(diff(ap$ActivityCode)))
@@ -179,13 +220,18 @@ enhance_actigraph <- function(ag,ap) {
   # It would be nice to leave the datasets as zoo objects, but this seems
   # like it could lead to problems by calling unexpected methods.
   # FIXME need to deal with mismatches in the times spanned by these data
-  temp <- merge(zoo::zoo(NULL, ag$Time),
-    zoo::zoo(ap[c("ActivityCode", "ActivityBlocks",
-      "CumulativeStepCount")],
-      ap$Time - diff(ag$Time)[1]/2))
+  ap_merge_names <- c(
+    "ActivityCode", "ActivityBlocks", "CumulativeStepCount"
+  )
+  temp <- merge(
+    zoo::zoo(NULL, ag$Time),
+    zoo::zoo(
+      ap[ ,ap_merge_names],
+      ap$Time - diff(ag$Time)[1]/2
+    )
+  )
   temp[1,is.na(temp[1,])] <- 0
-  ag[c("ActivityCode", "ActivityBlocks", "AP.steps")] <-
-    zoo::na.locf(temp)[ag$Time]
+  ag[ ,ap_merge_names] <- zoo::na.locf(temp)[ag$Time]
 
   return(ag)
 
