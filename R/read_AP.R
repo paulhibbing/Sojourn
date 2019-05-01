@@ -10,13 +10,20 @@
 #'
 #' @examples
 #' ap_file <- system.file(
-#' "extdata/sampledata Events.csv",
+#' "extdata/sampledata_Events.csv",
 #' package = "Sojourn"
 #' )
 #' read_AP(ap_file)
 read_AP <- function(filename, tz = "UTC") {
 
-  deffile <- sub(" Events\\.csv", ".def", filename)
+  if (!requireNamespace("data.table", quietly = TRUE)) {
+    stop(paste(
+      "You must install the `data.table`",
+      "package to use this function"
+    ))
+  }
+
+  deffile <- sub("[ _]Events\\.csv", ".def", filename)
 
   if (!file.exists(deffile)) {
     stop(paste0(
@@ -25,7 +32,7 @@ read_AP <- function(filename, tz = "UTC") {
     ))
   }
 
-  header <- read.csv(
+  header <- utils::read.csv(
     deffile, header = FALSE,
     stringsAsFactors = FALSE, row.names = 1
   )
