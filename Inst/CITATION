@@ -18,7 +18,7 @@ citEntry(
   paste(
     "Paul R. Hibbing, Kate Lyden, & Isaac J. Schwabacher (2019).",
     "Sojourn: Apply Sojourn methods for processing",
-    "ActiGraph accelerometer data",
-    "URL https://cran.r-project.org/package=Sojourn."
+    "ActiGraph accelerometer data.",
+    "URL: https://cran.r-project.org/package=Sojourn."
   )
 )

@@ -4,12 +4,14 @@
 \alias{enhance_actigraph}
 \title{Combine ActiGraph and activPAL data}
 \usage{
-enhance_actigraph(ag, ap)
+enhance_actigraph(ag, ap, verbose = FALSE)
 }
 \arguments{
 \item{ag}{ActiGraph data}
 
 \item{ap}{activPAL data}
+
+\item{verbose}{logical. Print information to console?}
 }
 \description{
 Merge data streams for separate monitors in the
