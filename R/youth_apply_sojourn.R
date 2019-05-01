@@ -24,12 +24,14 @@
 #'
 #' @examples
 #'   data(example_data, package = "Sojourn")
-#'   results_youth_soj <- apply_youth_sojourn(
-#'     AG = example_data,
-#'     vm = "Vector.Magnitude",
-#'     Site = "Hip"
-#'   )
-#'   head(results_youth_soj)
+#'   \donttest{
+#'     results_youth_soj <- apply_youth_sojourn(
+#'       AG = example_data,
+#'       vm = "Vector.Magnitude",
+#'       Site = "Hip"
+#'     )
+#'     head(results_youth_soj)
+#'  }
 #'
 apply_youth_sojourn <- function(AG, vm = c("Vector.Magnitude", "ENMO"),
   Site = c("Hip", "Wrist"), demo_interactive = FALSE, verbose = FALSE, ...) {

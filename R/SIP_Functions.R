@@ -176,7 +176,8 @@ SIP_frame_test <- function(
 
   }
 
-  frame <- cbind(frame, other_vars)
+  if (exists("other_vars")) frame <- cbind(frame, other_vars)
+
   frame
 
 }
