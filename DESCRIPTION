@@ -17,11 +17,8 @@ Description: Provides a simple way for utilizing Sojourn methods for
     Staudenmayer J, & Freedson P (2014) <doi:10.1249/MSS.0b013e3182a42a2d>,
     Ellingson LD, Schwabacher IJ, Kim Y, Welk GJ, & Cook DB (2016)
     <doi:10.1249/MSS.0000000000000915>, and Hibbing PR, Ellingson LD,
-    Dixon PM, & Welk GJ (2018) <doi:10.1249/MSS.0000000000001486>. File
-    reading is not included in the functionality of the Sojourn package.
-    For help with that preliminary step, users are directed to the packages
-    AGread (for ActiGraph files) and activpalProcessing (for activPAL files).
-License: MIT + file LICENSE
+    Dixon PM, & Welk GJ (2018) <doi:10.1249/MSS.0000000000001486>.
+License: GPL-3
 Encoding: UTF-8
 LazyData: true
 Imports: AGread,
@@ -40,6 +37,6 @@ RoxygenNote: 6.1.1
 URL: http://github.com/paulhibbing/Sojourn
 BugReports: http://github.com/paulhibbing/Sojourn/issues
 Suggests:
-    testthat,
-    Sojourn.Data
-
+    data.table,
+    Sojourn.Data,
+    testthat
