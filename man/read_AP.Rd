@@ -26,7 +26,6 @@ ap_file <- system.file(
 "extdata/sampledata_Events.csv",
 package = "Sojourn"
 )
-\donttest{
-  read_AP(ap_file)
-}
+ap_data <- read_AP(ap_file)
+head(ap_data)
 }

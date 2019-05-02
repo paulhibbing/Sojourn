@@ -13,9 +13,8 @@
 #' "extdata/sampledata_Events.csv",
 #' package = "Sojourn"
 #' )
-#' \donttest{
-#'   read_AP(ap_file)
-#' }
+#' ap_data <- read_AP(ap_file)
+#' head(ap_data)
 read_AP <- function(filename, tz = "UTC") {
 
   if (!requireNamespace("data.table", quietly = TRUE)) {

@@ -20,5 +20,6 @@ Merge data streams for separate monitors in the
 \examples{
 data(SIP_ag, package = "Sojourn")
 data(SIP_ap, package = "Sojourn")
-enhance_actigraph(SIP_ag, SIP_ap)
+combined_data <- enhance_actigraph(SIP_ag, SIP_ap)
+head(combined_data)
 }

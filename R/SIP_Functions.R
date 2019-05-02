@@ -196,7 +196,8 @@ SIP_frame_test <- function(
 #' @examples
 #' data(SIP_ag, package = "Sojourn")
 #' data(SIP_ap, package = "Sojourn")
-#' enhance_actigraph(SIP_ag, SIP_ap)
+#' combined_data <- enhance_actigraph(SIP_ag, SIP_ap)
+#' head(combined_data)
 enhance_actigraph <- function(ag,ap, verbose = FALSE) {
 
   ag <- SIP_frame_test(
