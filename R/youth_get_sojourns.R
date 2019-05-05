@@ -21,9 +21,10 @@
 #'
 #' @examples
 #' data(example_data, package = "Sojourn")
+#' if (isTRUE(requireNamespace("Sojourn.Data"))) {
 #' get_youth_sojourns(example_data$Vector.Magnitude,
 #'   Output = "Counts", Site = "Hip")
-#'
+#' }
 get_youth_sojourns <- function(vm,short=30, Output = c("Counts", "Raw"),
   Site = c("Hip", "Wrist"), epoch = 1, difference = 15,
   threshold = 100, verbose = FALSE) {
