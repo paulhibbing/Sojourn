@@ -12,7 +12,9 @@
 #' data(SIP_ag, package = "Sojourn")
 #' data(SIP_ap, package = "Sojourn")
 #' data <- Sojourn::enhance_actigraph(SIP_ag, SIP_ap)
+#' if (isTRUE(requireNamespace("Sojourn.Data"))) {
 #' head(sojourn_3x_SIP(data))
+#' }
 sojourn_3x_SIP <- function(ag, short = 30) {
 
   if (!requireNamespace("Sojourn.Data", quietly = TRUE)) {

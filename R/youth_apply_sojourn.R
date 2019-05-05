@@ -25,12 +25,14 @@
 #' @examples
 #'   data(example_data, package = "Sojourn")
 #'   \donttest{
+#'   if (isTRUE(requireNamespace("Sojourn.Data"))) {
 #'     results_youth_soj <- apply_youth_sojourn(
 #'       AG = example_data,
 #'       vm = "Vector.Magnitude",
 #'       Site = "Hip"
 #'     )
 #'     head(results_youth_soj)
+#'  }
 #'  }
 #'
 apply_youth_sojourn <- function(AG, vm = c("Vector.Magnitude", "ENMO"),

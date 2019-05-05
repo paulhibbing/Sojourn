@@ -11,6 +11,7 @@
 #'
 #' @examples
 #' data(example_data, package = "Sojourn")
+#' if (isTRUE(requireNamespace("Sojourn.Data"))) {
 #' example_data <-
 #'   soj_3x_original(
 #'     example_data$axis1,
@@ -20,7 +21,7 @@
 #'   )
 #'
 #' compute.bouts.info(example_data$METs)
-#'
+#' }
 compute.bouts.info <- function(est.mets, units=c("secs", "mins")) {
 
   units <- match.arg(units)

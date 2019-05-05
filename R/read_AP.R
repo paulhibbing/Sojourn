@@ -28,8 +28,14 @@ read_AP <- function(filename, tz = "UTC") {
 
   if (!file.exists(deffile)) {
     stop(paste0(
-      "Cannot find DEF file, i.e., `",
-      basename(deffile), "`"
+      "\n  Cannot find DEF file, i.e., `",
+      basename(deffile), "`. ",
+      "Make sure that file is in the\n  same directory as `",
+      basename(filename), "`",
+      ", or consider using\n  `",
+      "activpalProcessing::activpal.file.reader()`, ",
+      "but beware of potential\n  timezone/daylight saving ",
+      "issues with the timestamps in the latter function"
     ))
   }
 
