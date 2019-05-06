@@ -2,7 +2,7 @@
 % Please edit documentation in R/soj_3x_original.R
 \name{soj_3x_original}
 \alias{soj_3x_original}
-\title{Invoke the original tri-axial Sojourn method}
+\title{Invoke the original triaxial Sojourn method}
 \usage{
 soj_3x_original(counts, counts.2, counts.3, vect.mag, short = 30)
 }
@@ -21,7 +21,7 @@ soj_3x_original(counts, counts.2, counts.3, vect.mag, short = 30)
 a data frame of processed data
 }
 \description{
-Calls the tri-axial Sojourn method from \href{https://www.ncbi.nlm.nih.gov/pubmed/23860415}{Lyden et al. (2014)}.
+Calls the triaxial Sojourn method from \href{https://www.ncbi.nlm.nih.gov/pubmed/23860415}{Lyden et al. (2014)}.
 }
 \examples{
 data(example_data, package = "Sojourn")

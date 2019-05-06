@@ -1,12 +1,12 @@
 ## Test environments
 
 * local Windows 10 install, R 3.5.0
-* ubuntu 14.04.5 (on travis-ci), R 3.5.3
+* ubuntu 14.04.5 (on travis-ci), R 3.6.0
 * win-builder (devel and release)
 
 ## R CMD check results
 
-0 ERRORs | 0 WARNINGs | 4 NOTEs
+0 ERRORs | 0 WARNINGs | 1 NOTE
 
 * checking CRAN incoming feasibility ... NOTE
   Maintainer: 'Paul R. Hibbing <paulhibbing@gmail.com>'
@@ -33,20 +33,6 @@ This is the first submission of the Sojourn package. The
     possibly mis-spelled words are sensor names or
     publication author names.
     
-** running examples for arch 'i386' ... [36s] NOTE
-    Examples with CPU or elapsed time > 10s
-                         user system elapsed
-    apply_youth_sojourn 20.54   0.74   22.44
-
-This example is wrapped in \donttest{}
-
-** running examples for arch 'x64' ... [37s] NOTE
-    Examples with CPU or elapsed time > 10s
-                         user system elapsed
-    apply_youth_sojourn 23.35   0.76   24.65
-
-This example is wrapped in \donttest{}
-
 ## Reverse dependencies
 
 This is a new release, so there are no reverse dependencies.

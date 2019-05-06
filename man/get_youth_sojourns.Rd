@@ -38,7 +38,8 @@ Identify Sojourns using the algorithm of \href{https://www.ncbi.nlm.nih.gov/pubm
 }
 \examples{
 data(example_data, package = "Sojourn")
+if (isTRUE(requireNamespace("Sojourn.Data"))) {
 get_youth_sojourns(example_data$Vector.Magnitude,
   Output = "Counts", Site = "Hip")
-
+}
 }

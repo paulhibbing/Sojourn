@@ -1,6 +1,6 @@
-#' Invoke the original tri-axial Sojourn method
+#' Invoke the original triaxial Sojourn method
 #'
-#' Calls the tri-axial Sojourn method from \href{https://www.ncbi.nlm.nih.gov/pubmed/23860415}{Lyden et al. (2014)}.
+#' Calls the triaxial Sojourn method from \href{https://www.ncbi.nlm.nih.gov/pubmed/23860415}{Lyden et al. (2014)}.
 #'
 #' @param counts numeric vector of activity counts from the first axis
 #' @param counts.2 numeric vector of activity counts from the second axis
