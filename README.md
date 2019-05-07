@@ -4,6 +4,7 @@
 Status](https://travis-ci.org/paulhibbing/Sojourn.svg?branch=master)](https://travis-ci.org/paulhibbing/Sojourn)
 [![License:
 MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+[![CRAN\_Status\_Badge](http://www.r-pkg.org/badges/version/Sojourn)](https://cran.r-project.org/package=Sojourn)
 
 # Sojourn
 
