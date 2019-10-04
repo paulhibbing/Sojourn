@@ -33,3 +33,6 @@ NULL
 #' @import nnet
 NULL
 
+#' @useDynLib Sojourn
+#' @importFrom Rcpp sourceCpp
+NULL

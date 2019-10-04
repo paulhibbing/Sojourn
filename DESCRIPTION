@@ -32,7 +32,8 @@ Imports: AGread,
     stats,
     svDialogs (>= 1.0),
     utils,
-    zoo (>= 1.8)
+    zoo (>= 1.8),
+    Rcpp
 RoxygenNote: 6.1.1
 URL: http://github.com/paulhibbing/Sojourn
 BugReports: http://github.com/paulhibbing/Sojourn/issues
@@ -40,3 +41,4 @@ Suggests:
     data.table,
     Sojourn.Data,
     testthat
+LinkingTo: Rcpp
