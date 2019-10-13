@@ -137,6 +137,10 @@ apply_youth_sojourn <- function(AG, vm = c("Vector.Magnitude", "ENMO"),
     first_names <- c("id", "Sex", "Age", "BMI")
     AG <- AG[ ,c(first_names, setdiff(names(AG), first_names))]
 
+    AG$is_sojourn_transition <- c(
+      0, diff(AG$sojourns)!=0
+    )
+
     return(AG)
 
 }
