@@ -101,10 +101,10 @@ get_youth_sojourns <- function(vm,short=30, Output = c("Counts", "Raw"),
 
   if (length(trans.inds)==0){
 
-    message(paste(
-      "All data fit within one Sojourn.",
+    message(
+      "All data fit within one Sojourn. ",
       "You should follow up with manual inspection."
-    ))
+    )
 
     trans.table <- data.frame(
       sojourns=1,
