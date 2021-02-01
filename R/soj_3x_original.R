@@ -174,12 +174,8 @@ soj_3x_original <- function(counts, counts.2,
       n.neighbors <- length(durations.first.neighbors)
       n.neighbors.2 <- length(durations.second.neighbors)
 
-      inds.first <- (1:n.neighbors)[
-        durations.first.neighbors<=durations.second.neighbors
-      ]
-      inds.second <- (1:n.neighbors)[
-        durations.first.neighbors>durations.second.neighbors
-      ]
+      	inds.first <- (1:n.neighbors)[durations.first.neighbors>=durations.second.neighbors]
+		inds.second <- (1:n.neighbors)[durations.first.neighbors<durations.second.neighbors]
 
       too.short.inds.first <- junk.too.short[inds.first]
       too.short.inds.second <- junk.too.short[inds.second]
@@ -500,12 +496,8 @@ soj_3x_original <- function(counts, counts.2,
 
   trans.table$soj.type.all[trans.table$perc.soj>=0.7] <- 6
 
-  inds.activity.all <- (1:tt)[
-    (trans.table$perc.soj>=0.7)|
-      (trans.table$soj.type.all==2)|
-      (trans.table$soj.type.all==4)
-  ]
-
+   inds.activity.all <- (1:tt)[(trans.table$perc.soj>=0.7)]
+   
   act.trans.table.all <- trans.table[inds.activity.all,]
   dim(act.trans.table.all)
   activity.durations.all <- table(act.trans.table.all$sojourns)
