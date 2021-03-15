@@ -3,7 +3,6 @@
 \docType{package}
 \name{Sojourn}
 \alias{Sojourn}
-\alias{Sojourn-package}
 \title{Sojourn: Apply Sojourn Methods for Processing ActiGraph Accelerometer Data}
 \description{
 The Sojourn package provides a convenient way to apply the family of Sojourn

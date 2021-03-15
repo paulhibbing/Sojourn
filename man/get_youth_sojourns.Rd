@@ -4,9 +4,16 @@
 \alias{get_youth_sojourns}
 \title{Label Sojourns in a data stream according to the youth-specific algorithm}
 \usage{
-get_youth_sojourns(vm, short = 30, Output = c("Counts", "Raw"),
-  Site = c("Hip", "Wrist"), epoch = 1, difference = 15, threshold = 100,
-  verbose = FALSE)
+get_youth_sojourns(
+  vm,
+  short = 30,
+  Output = c("Counts", "Raw"),
+  Site = c("Hip", "Wrist"),
+  epoch = 1,
+  difference = 15,
+  threshold = 100,
+  verbose = FALSE
+)
 }
 \arguments{
 \item{vm}{vector of triaxial accelerometer values, either the vector

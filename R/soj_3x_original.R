@@ -530,11 +530,13 @@ soj_3x_original <- function(counts, counts.2,
 
     names(nn.trans.table.all) <- c("X10.","X25.","X50.","X75.","X90.","acf")
 
-    nnetinputs.acts.all <- scale(nn.trans.table.all,center=cent,scale=scal)
+    nnetinputs.acts.all <- scale(
+      nn.trans.table.all, center = Sojourn.Data::cent, scale = Sojourn.Data::scal
+    )
 
     #	predict METs
 
-    act.mets.all <- predict(reg.nn,nnetinputs.acts.all)
+    act.mets.all <- predict(Sojourn.Data::reg.nn,nnetinputs.acts.all)
     act.mets.all <- rep(act.mets.all,activity.durations.all)
 
     #	put back in table

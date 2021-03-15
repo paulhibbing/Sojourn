@@ -4,8 +4,14 @@
 \alias{youth_sojourn_tree}
 \title{Decision tree for making final predictions in the youth Sojourn method}
 \usage{
-youth_sojourn_tree(Vector.Magnitude, Block.Est, Sojourns.Est, Hip = TRUE,
-  RAW = FALSE, epoch = 1)
+youth_sojourn_tree(
+  Vector.Magnitude,
+  Block.Est,
+  Sojourns.Est,
+  Hip = TRUE,
+  RAW = FALSE,
+  epoch = 1
+)
 }
 \arguments{
 \item{Vector.Magnitude}{numeric vector of triaxial acceleration (vector

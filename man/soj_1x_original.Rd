@@ -4,8 +4,15 @@
 \alias{soj_1x_original}
 \title{Invoke the original uni-axial Sojourn method}
 \usage{
-soj_1x_original(counts, perc.cut = 0.05, perc.cut.2 = 0.12,
-  perc.cut.3 = 0.55, too.short = 10, sit.cut = 90, long.soj = 120)
+soj_1x_original(
+  counts,
+  perc.cut = 0.05,
+  perc.cut.2 = 0.12,
+  perc.cut.3 = 0.55,
+  too.short = 10,
+  sit.cut = 90,
+  long.soj = 120
+)
 }
 \arguments{
 \item{counts}{numeric vector of vertical axis counts}

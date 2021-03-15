@@ -4,7 +4,8 @@
 \name{SIP_ap}
 \alias{SIP_ap}
 \title{activPAL sample data for exploring Sojourns Including Posture (SIP) method}
-\format{A data frame with 12257 rows and 5 variables:
+\format{
+A data frame with 12257 rows and 5 variables:
 \describe{
   \item{Time}{POSIX-formatted variable giving the timestamp for each
   observation}
@@ -17,7 +18,8 @@
   \item{CumulativeStepCount}{Integer giving the cumulative step count from
   the start of the file to the current data point.}
   \item{ActivityScore}{Numeric giving MET-hours}
-}}
+}
+}
 \usage{
 SIP_ap
 }

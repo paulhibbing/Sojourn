@@ -4,8 +4,13 @@
 \alias{youth_name_test}
 \title{Check monitor data for required demographic variables}
 \usage{
-youth_name_test(AG, demo_names = c("id", "Age", "Sex", "BMI"),
-  demo_interactive = FALSE, fix_sex_var = TRUE, ...)
+youth_name_test(
+  AG,
+  demo_names = c("id", "Age", "Sex", "BMI"),
+  demo_interactive = FALSE,
+  fix_sex_var = TRUE,
+  ...
+)
 }
 \arguments{
 \item{AG}{a data frame of monitor and demographic data}

@@ -4,7 +4,8 @@
 \name{example_data}
 \alias{example_data}
 \title{Sample data for exploring original and youth Sojourn methods}
-\format{A data frame with 79989 rows and 11 variables:
+\format{
+A data frame with 79989 rows and 11 variables:
 \describe{
   \item{id}{An example ID for the data set}
   \item{Sex}{An example sex for the data set}
@@ -20,7 +21,8 @@
   \item{steps}{Predicted steps taken}
   \item{incline}{Inclinometer status (0 = off, 1 = lying, 2 = sitting, 3 =
   standing)}
-}}
+}
+}
 \usage{
 example_data
 }

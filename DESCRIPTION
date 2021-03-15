@@ -34,7 +34,7 @@ Imports: AGread,
     utils,
     zoo (>= 1.8),
     Rcpp
-RoxygenNote: 6.1.1
+RoxygenNote: 7.1.1
 URL: http://github.com/paulhibbing/Sojourn
 BugReports: http://github.com/paulhibbing/Sojourn/issues
 Suggests:

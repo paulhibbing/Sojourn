@@ -4,9 +4,17 @@
 \alias{youth_network_shape}
 \title{Format data for input into the youth Sojourn method's neural networks}
 \usage{
-youth_network_shape(data, sojourns = TRUE, RAW = FALSE, epoch = 1,
-  verbose = TRUE, expand = TRUE, time_var = "Timestamp",
-  first_print = TRUE, ...)
+youth_network_shape(
+  data,
+  sojourns = TRUE,
+  RAW = FALSE,
+  epoch = 1,
+  verbose = TRUE,
+  expand = TRUE,
+  time_var = "Timestamp",
+  first_print = TRUE,
+  ...
+)
 }
 \arguments{
 \item{data}{a data frame of monitor and demographic data to format}

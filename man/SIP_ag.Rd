@@ -4,7 +4,8 @@
 \name{SIP_ag}
 \alias{SIP_ag}
 \title{ActiGraph sample data for exploring Sojourns Including Posture (SIP) method.}
-\format{A data frame with 12257 rows and 5 variables:
+\format{
+A data frame with 12257 rows and 5 variables:
 \describe{
   \item{counts}{Activity counts from the first axis}
   \item{axis2}{Activity counts from the second axis}
@@ -12,7 +13,8 @@
   \item{vm}{Vector magnitude of activity counts}
   \item{Time}{POSIX-formatted variable giving the timestamp for each
   observation}
-}}
+}
+}
 \usage{
 SIP_ag
 }
