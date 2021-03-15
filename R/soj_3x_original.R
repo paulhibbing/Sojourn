@@ -37,6 +37,9 @@ soj_3x_original <- function(counts, counts.2,
   y <- counts
   counts.2 <- counts.2
   counts.3 <- counts.3
+  if (missing(vect.mag)) vect.mag <- sqrt(
+    (y^2)+(counts.2^2)+(counts.3^2)
+  )
 
   inds <- 1:length(y)
 
@@ -168,14 +171,14 @@ soj_3x_original <- function(counts, counts.2,
       durations.second.neighbors <- durations[second.neighbors]
 
       #	put in dummy duration for too.short sojourns at beginning and end of file
-      durations.first.neighbors[is.na(durations.first.neighbors)] <- 100000
-      durations.second.neighbors[is.na(durations.second.neighbors)] <- 100000
+      durations.first.neighbors[is.na(durations.first.neighbors)] <- 0
+      durations.second.neighbors[is.na(durations.second.neighbors)] <- 0
 
       n.neighbors <- length(durations.first.neighbors)
       n.neighbors.2 <- length(durations.second.neighbors)
 
-      	inds.first <- (1:n.neighbors)[durations.first.neighbors>=durations.second.neighbors]
-		inds.second <- (1:n.neighbors)[durations.first.neighbors<durations.second.neighbors]
+      inds.first <- (1:n.neighbors)[durations.first.neighbors>=durations.second.neighbors]
+      inds.second <- (1:n.neighbors)[durations.first.neighbors<durations.second.neighbors]
 
       too.short.inds.first <- junk.too.short[inds.first]
       too.short.inds.second <- junk.too.short[inds.second]
@@ -218,7 +221,7 @@ soj_3x_original <- function(counts, counts.2,
 
     }
 
-    #	print(counter)
+    #   print(counter)
     counter <- counter+1
 
   }	# end loop 1
@@ -252,9 +255,6 @@ soj_3x_original <- function(counts, counts.2,
 
   trans.table$perc.soj <- perc.soj
 
-
-  ### get inds.inactivities so can test nnet only to distinguish between
-  ### lifestyle and sedentary
 
   #	now get inactivity indices
 
@@ -347,7 +347,7 @@ soj_3x_original <- function(counts, counts.2,
 
     }
     g <- g+1
-    #	print(g)
+    #   print(g)
   }
 
   nnetinputs.2$acf.2[is.na(nnetinputs.2$acf.2)] <- mean(
@@ -456,10 +456,7 @@ soj_3x_original <- function(counts, counts.2,
   )
   inputs <- as.data.frame(inputs)
 
-  #	predict type using all axes + vm.  i intially had a lot of prediction nnets
-  #	here (ie different axis) but have removed them and only include the one that
-  #	looks "the best".  there are definitely others we can use/try
-
+  #	predict type using all axes + vm.
   #	remove NA's
 
   inputs.1 <- inputs[,-(13)]
@@ -477,7 +474,10 @@ soj_3x_original <- function(counts, counts.2,
   cool.all <- rep(junk.cool.all,inact.durations)
 
   trans.table$soj.type.all[inds.inacts] <- cool.all
-  #	assign mets to types.
+
+  #	assign mets to types.  for now i used previous criteria (percent of
+  #	non-zeros) to assign different mets for sedentary and lifestyle (ie to
+  #	decide between 1 and 1.2 or 1.5 and 1.7)
 
   trans.table$soj.mets.all[
     (trans.table$soj.type.all==1)&(trans.table$perc.soj<=0.12)
@@ -491,59 +491,69 @@ soj_3x_original <- function(counts, counts.2,
   trans.table$soj.mets.all[
     (trans.table$soj.type.all==3)&(trans.table$perc.soj>0.05)
   ] <- 1.2
+  trans.table$soj.mets.all[
+    (trans.table$soj.type.all==4|trans.table$soj.type.all==2) &
+    (trans.table$perc.soj>0.12)
+  ] <- 1.7
+  trans.table$soj.mets.all[
+    (trans.table$soj.type.all==4|trans.table$soj.type.all==2) &
+    (trans.table$perc.soj<=0.12)
+  ] <- 1.5
 
   #	this identifies activities for nnet all - 6 means activity
 
   trans.table$soj.type.all[trans.table$perc.soj>=0.7] <- 6
+  # head(trans.table)
+  inds.activity.all <- (1:tt)[(trans.table$perc.soj>=0.7)]
 
-   inds.activity.all <- (1:tt)[(trans.table$perc.soj>=0.7)]
-   
-  act.trans.table.all <- trans.table[inds.activity.all,]
-  dim(act.trans.table.all)
-  activity.durations.all <- table(act.trans.table.all$sojourns)
+  if(length(inds.activity.all)>0) {
 
-  quantiles.all <- tapply(
-    act.trans.table.all$counts,
-    act.trans.table.all$sojourns,
-    quantile,
-    p = c(.1,.25,.5,.75,.9)
-  )
-  nn.trans.table.all <- as.data.frame(
-    do.call("rbind",quantiles.all)
-  )
+    act.trans.table.all <- trans.table[inds.activity.all,]
+    # dim(act.trans.table.all)
+    activity.durations.all <- table(act.trans.table.all$sojourns)
 
-  #	i realize i am getting lag1 differently than i do for inactivities...i should change to use function throughout.
-  nn.trans.table.all$acf <- tapply(
-    act.trans.table.all$counts,
-    act.trans.table.all$sojourns,
-    acf.lag1
-  )
-  nn.trans.table.all <- nn.trans.table.all[,c(1:6)]
+    quantiles.all <- tapply(
+      act.trans.table.all$counts,
+      act.trans.table.all$sojourns,
+      quantile,p=c(.1,.25,.5,.75,.9)
+    )
+    nn.trans.table.all <- as.data.frame(
+      do.call("rbind",quantiles.all)
+    )
 
-  names(nn.trans.table.all) <- c("X10.","X25.","X50.","X75.","X90.","acf")
+    nn.trans.table.all$acf <- tapply(
+      act.trans.table.all$counts,
+      act.trans.table.all$sojourns,
+      acf.lag1
+    )
+    nn.trans.table.all <- nn.trans.table.all[,c(1:6)]
 
-  nnetinputs.acts.all <- scale(
-    nn.trans.table.all,
-    center = Sojourn.Data::cent,
-    scale = Sojourn.Data::scal
-  )
+    names(nn.trans.table.all) <- c("X10.","X25.","X50.","X75.","X90.","acf")
 
-  #	predict METs
+    nnetinputs.acts.all <- scale(nn.trans.table.all,center=cent,scale=scal)
 
-  act.mets.all <- predict(
-    Sojourn.Data::reg.nn,
-    nnetinputs.acts.all
-  )
-  act.mets.all <- rep(act.mets.all,activity.durations.all)
+    #	predict METs
 
-  #	put back in table
+    act.mets.all <- predict(reg.nn,nnetinputs.acts.all)
+    act.mets.all <- rep(act.mets.all,activity.durations.all)
 
-  trans.table$soj.mets.all[inds.activity.all] <- act.mets.all
+    #	put back in table
+
+    trans.table$soj.mets.all[inds.activity.all] <- act.mets.all
+
+    head(trans.table)
+
+  }
+
+  if(length(inds.activity.all)==0) {
+    print("No Activity in File. Verify the file is valid.")
+  }
 
   #	get breaks from sitting
 
-  #	trans.table$do.breaks <- 0
+  trans.table$do.breaks <- 0
   trans.table$soj.breaks.all <- 0
+  trans.table[1:10,]
 
   soj.posture <- as.vector(trans.table$soj.mets.all)
   s.p <- length(soj.posture)
@@ -556,11 +566,12 @@ soj_3x_original <- function(counts, counts.2,
   soj.trans.inds <- (1:s.p)[soj.trans==1]
 
   trans.table$soj.breaks.all <- soj.trans
-  #	sum(trans.table$soj.breaks.all)
+  #     sum(trans.table$soj.breaks.all)
 
-  names(trans.table)[8:10] <- c("type","METs","break")
-
-  trans.table <- trans.table[,-c(8,10)]
+  trans.table <- trans.table[,-c(8,10,11)]
+  names(trans.table) <- c(
+    "axis1","axis2","axis3","VM","sojourns","durations","perc.soj","METs"
+  )
 
   return(trans.table)
 
