@@ -212,8 +212,7 @@ enhance_actigraph <- function(ag,ap, verbose = FALSE) {
   )
 
   stopifnot(
-    lubridate::tz(ag$Timestamp) ==
-      lubridate::tz(ap$Time)
+    lubridate::tz(ag$Time) == lubridate::tz(ap$Time)
   )
 
   ap$ActivityBlocks <- cumsum(
