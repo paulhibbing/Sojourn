@@ -1,3 +1,11 @@
+## Resubmission:
+This is a resubmission with the following changes:
+
+  * Ensured conditional use of the Sojourn.Data package, per
+    email from Prof Brian Ridley.
+  * Made technical bug fixes (major increment) and an additional
+    minor function enhancement.
+    
 ## Test environments
 
 * local Windows 10 install, R 4.0.4
@@ -16,8 +24,7 @@
     
 The referenced package (Sojourn.Data) was recently archived
 due to issues with LazyDataCompression. I am working on
-fixing that. For this package (Sojourn) I have fixed the
-code to use Sojourn.Data conditionally.
+fixing that, as I also maintain that package.
     
 ## Reverse dependencies
 
