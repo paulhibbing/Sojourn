@@ -12,4 +12,5 @@ accelerometer data. See [Lyden et al.
 (2014)](https://www.ncbi.nlm.nih.gov/pubmed/23860415), [Ellingson et al.
 (2016)](https://www.ncbi.nlm.nih.gov/pubmed/?term=Validity+of+an+Integrative+Method+for+Processing+Physical+Activity+Data)
 and [Hibbing et al.
-(2018)](https://www.ncbi.nlm.nih.gov/pubmed/29135657).
+(2018)](https://www.ncbi.nlm.nih.gov/pubmed/29135657). See also the accompanying
+[Sojourn.Data repository](https://github.com/paulhibbing/Sojourn.Data).
