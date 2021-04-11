@@ -1,7 +1,7 @@
 ## Test environments
 
-* local Windows 10 installs, R 3.5.0 and 4.0.4
-* ubuntu 14.04.5 (on travis-ci), R 3.6.0
+* local Windows 10 install, R 4.0.4
+* ubuntu 14.04.5 (on travis-ci), R 4.0.2
 * win-builder (devel and release)
 
 ## R CMD check results
@@ -11,28 +11,14 @@
 * checking CRAN incoming feasibility ... NOTE
   Maintainer: 'Paul R. Hibbing <paulhibbing@gmail.com>'
 
-    New submission
-
-    Possibly mis-spelled words in DESCRIPTION:
-      Accelerometer (3:55)
-      ActiGraph (3:45)
-      Ellingson (18:5, 19:57)
-      Freedson (17:23)
-      GJ (18:47, 20:22)
-      Hibbing (19:45)
-      IJ (18:31)
-      Keadle (16:55)
-      LD (18:15, 19:67)
-      Lyden (16:46)
-      Schwabacher (18:19)
-      Staudenmayer (17:5)
-      Welk (18:42, 20:17)
-      accelerometer (16:5)
-
-This is the first submission of the Sojourn package. The
-    possibly mis-spelled words are sensor names or
-    publication author names.
+  Suggests or Enhances not in mainstream repositories:
+    Sojourn.Data
+    
+The referenced package (Sojourn.Data) was recently archived
+due to issues with LazyDataCompression. I am working on
+fixing that. For this package (Sojourn) I have fixed the
+code to use Sojourn.Data conditionally.
     
 ## Reverse dependencies
 
-This is a new release, so there are no reverse dependencies.
+There are no reverse dependencies.
