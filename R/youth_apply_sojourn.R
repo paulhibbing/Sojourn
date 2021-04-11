@@ -17,8 +17,8 @@
 #' @return The original data frame, plus additional predictions made by the
 #'   Sojourn method
 #'
-#' @note The functions \link[AGread]{read_AG_counts} and
-#'   \link[AGread]{read_AG_raw} are recommended for assembling the
+#' @note The functions \code{AGread::read_AG_counts} and
+#'   \code{AGread::read_AG_raw} are recommended for assembling the
 #'   monitor-specific portion of the \code{AG} data frame.
 #' @export
 #'
@@ -31,7 +31,7 @@
 #'       vm = "Vector.Magnitude",
 #'       Site = "Hip"
 #'     )
-#'     head(results_youth_soj)
+#'     utils::head(results_youth_soj)
 #'  }
 #'  }
 #'

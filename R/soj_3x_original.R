@@ -21,7 +21,7 @@
 #'   example_data$Vector.Magnitude
 #' )
 #'
-#' head(results_3x)
+#' utils::head(results_3x)
 #' }
 #'
 soj_3x_original <- function(counts, counts.2,
@@ -543,7 +543,7 @@ soj_3x_original <- function(counts, counts.2,
 
     trans.table$soj.mets.all[inds.activity.all] <- act.mets.all
 
-    head(trans.table)
+    # head(trans.table)
 
   }
 
