@@ -14,7 +14,7 @@ This is a resubmission with the following changes:
 
 ## R CMD check results
 
-0 ERRORs | 0 WARNINGs | 1 NOTE
+0 ERRORs | 0 WARNINGs | 2 NOTES
 
 * checking CRAN incoming feasibility ... NOTE
   Maintainer: 'Paul R. Hibbing <paulhibbing@gmail.com>'
@@ -22,9 +22,16 @@ This is a resubmission with the following changes:
   Suggests or Enhances not in mainstream repositories:
     Sojourn.Data
     
-The referenced package (Sojourn.Data) was recently archived
-due to issues with LazyDataCompression. I am working on
-fixing that, as I also maintain that package.
+* Package suggested but not available for checking: 'Sojourn.Data'
+    
+The referenced package was recently archived due to issues with
+LazyDataCompression. I am also the maintainer of that
+package, and I am working on fixing the issue. As noted above,
+this resubmission includes updates to ensure the affected package
+is only referenced conditionally. Per CRAN Repository Policy, I
+have also added to the description field in DESCRIPTION to
+highlight an alternative means of accessing the affected
+package while I am working to get it resubmitted to CRAN.
     
 ## Reverse dependencies
 

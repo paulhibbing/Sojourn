@@ -17,7 +17,9 @@ Description: Provides a simple way for utilizing Sojourn methods for
     Staudenmayer J, & Freedson P (2014) <doi:10.1249/MSS.0b013e3182a42a2d>,
     Ellingson LD, Schwabacher IJ, Kim Y, Welk GJ, & Cook DB (2016)
     <doi:10.1249/MSS.0000000000000915>, and Hibbing PR, Ellingson LD,
-    Dixon PM, & Welk GJ (2018) <doi:10.1249/MSS.0000000000001486>.
+    Dixon PM, & Welk GJ (2018) <doi:10.1249/MSS.0000000000001486>. The
+    accompanying Sojourn.Data package, if not available on CRAN, can
+    be accessed from https://github.com/paulhibbing/Sojourn.Data.
 License: GPL-3
 Encoding: UTF-8
 LazyData: true
