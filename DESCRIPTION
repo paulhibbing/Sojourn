@@ -2,7 +2,7 @@ Package: Sojourn
 Type: Package
 Title: Apply Sojourn Methods for Processing ActiGraph
     Accelerometer Data
-Version: 0.1.0.9000
+Version: 1.0.0
 Authors@R: c(
     person(c("Paul", "R."), "Hibbing", email = "paulhibbing@gmail.com",
 		  role = c("aut","cre")),
@@ -21,9 +21,7 @@ Description: Provides a simple way for utilizing Sojourn methods for
 License: GPL-3
 Encoding: UTF-8
 LazyData: true
-Imports: AGread,
-    caret,
-    dplyr (>= 0.7),
+Imports: dplyr (>= 0.7),
     magrittr (>= 1.5),
     lubridate (>= 1.7.4),
     nnet (>= 7.3),
