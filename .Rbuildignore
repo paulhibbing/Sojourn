@@ -6,3 +6,4 @@
 ^README\.Rmd$
 ^README-.*\.png$
 ^To-Do\.txt$
+^CRAN-RELEASE$
