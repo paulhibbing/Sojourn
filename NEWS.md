@@ -1,6 +1,5 @@
 # Sojourn 1.0.0
 
-* Added basic framework for using change point detection
 * Added a transition indicator to the youth Sojourn models
 * Fixed bugs in original triaxial method (see #2)
 

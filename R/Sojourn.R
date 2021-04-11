@@ -33,8 +33,4 @@ NULL
 #' @import nnet
 NULL
 
-#' @useDynLib Sojourn
-#' @importFrom Rcpp sourceCpp
-NULL
-
 if(getRversion() >= "2.15.1")  utils::globalVariables(c("."))

@@ -39,4 +39,3 @@ Suggests:
     data.table,
     Sojourn.Data,
     testthat
-LinkingTo: Rcpp
