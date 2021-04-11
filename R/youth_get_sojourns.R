@@ -30,10 +30,11 @@ get_youth_sojourns <- function(vm,short=30, Output = c("Counts", "Raw"),
   threshold = 100, verbose = FALSE) {
 
   if (!requireNamespace("Sojourn.Data", quietly = TRUE)) {
-    stop(paste(
+    stop(
       "You must install the package `Sojourn.Data`",
-      "to use this function."
-    ))
+      "to use this function.\n  If it is missing on CRAN, use ",
+      "devtools::install_github(\"paulhibbing/Sojourn.Data\")"
+    )
   }
 
   Output <- match.arg(Output, c("Counts", "Raw", "Error"))

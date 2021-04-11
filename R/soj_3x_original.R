@@ -28,10 +28,11 @@ soj_3x_original <- function(counts, counts.2,
   counts.3, vect.mag, short=30) {
 
   if (!requireNamespace("Sojourn.Data", quietly = TRUE)) {
-    stop(paste(
+    stop(
       "You must install the package `Sojourn.Data`",
-      "to use this function."
-    ))
+      "to use this function.\n  If it is missing on CRAN, use ",
+      "devtools::install_github(\"paulhibbing/Sojourn.Data\")"
+    )
   }
 
   y <- counts

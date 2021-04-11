@@ -39,10 +39,11 @@ apply_youth_sojourn <- function(AG, vm = c("Vector.Magnitude", "ENMO"),
   Site = c("Hip", "Wrist"), demo_interactive = FALSE, verbose = FALSE, ...) {
 
   if (!requireNamespace("Sojourn.Data", quietly = TRUE)) {
-    stop(paste(
+    stop(
       "You must install the package `Sojourn.Data`",
-      "to use this function."
-    ))
+      "to use this function.\n  If it is missing on CRAN, use ",
+      "devtools::install_github(\"paulhibbing/Sojourn.Data\")"
+    )
   }
 
   ## Test Input
