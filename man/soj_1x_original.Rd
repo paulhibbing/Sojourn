@@ -37,8 +37,8 @@ Calls the uni-axial Sojourn method from \href{https://www.ncbi.nlm.nih.gov/pubme
 }
 \examples{
 data(example_data, package = "Sojourn")
-results_1x <- soj_1x_original(example_data$axis1)
-
-head(results_1x)
-
+if (isTRUE(requireNamespace("Sojourn.Data"))) {
+  results_1x <- soj_1x_original(example_data$axis1)
+  utils::head(results_1x)
+}
 }

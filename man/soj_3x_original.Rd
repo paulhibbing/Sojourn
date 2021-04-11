@@ -33,7 +33,7 @@ results_3x <- soj_3x_original(
   example_data$Vector.Magnitude
 )
 
-head(results_3x)
+utils::head(results_3x)
 }
 
 }
