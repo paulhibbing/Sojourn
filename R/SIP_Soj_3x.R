@@ -1,4 +1,4 @@
-#' Triaxial Sojourn method for the \href{https://www.ncbi.nlm.nih.gov/pubmed/27015380}{SIP method}
+#' Triaxial Sojourn method for the \href{https://pubmed.ncbi.nlm.nih.gov/27015380/}{SIP method}
 #'
 #' @param ag combined ActiGraph and activPAL data on which to identify
 #'   transitions and make predictions
