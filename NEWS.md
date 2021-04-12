@@ -1,3 +1,7 @@
+# Sojourn 1.0.1
+
+* Fixed invalid URLs
+
 # Sojourn 1.0.0
 
 * Added a transition indicator to the youth Sojourn models
