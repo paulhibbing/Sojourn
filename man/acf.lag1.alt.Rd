@@ -11,6 +11,6 @@ acf.lag1.alt(x)
 }
 \description{
 This function is used to compute lag-1 autocorrelation for the
-\href{https://www.ncbi.nlm.nih.gov/pubmed/27015380}{SIP method}
+\href{https://pubmed.ncbi.nlm.nih.gov/27015380/}{SIP method}
 }
 \keyword{internal}

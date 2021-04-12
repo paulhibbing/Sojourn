@@ -11,6 +11,6 @@ find.transitions(y)
 }
 \description{
 Examine a data stream for qualifying transitions according to the
-\href{https://www.ncbi.nlm.nih.gov/pubmed/27015380}{SIP method}
+\href{https://pubmed.ncbi.nlm.nih.gov/27015380/}{SIP method}
 }
 \keyword{internal}

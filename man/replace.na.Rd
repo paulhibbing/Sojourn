@@ -11,6 +11,6 @@ replace.na(x)
 }
 \description{
 This function is used to perform mean imputation for the
-\href{https://www.ncbi.nlm.nih.gov/pubmed/27015380}{SIP method}
+\href{https://pubmed.ncbi.nlm.nih.gov/27015380/}{SIP method}
 }
 \keyword{internal}

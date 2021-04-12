@@ -41,7 +41,7 @@ A data frame (with \code{nrow} equal to \code{length(vm)}) that gives
   sojourn labels and durations
 }
 \description{
-Identify Sojourns using the algorithm of \href{https://www.ncbi.nlm.nih.gov/pubmed/29135657}{Hibbing et al. (2018)}
+Identify Sojourns using the algorithm of \href{https://pubmed.ncbi.nlm.nih.gov/29135657/}{Hibbing et al. (2018)}
 }
 \examples{
 data(example_data, package = "Sojourn")

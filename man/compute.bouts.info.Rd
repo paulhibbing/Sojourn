@@ -16,7 +16,7 @@ a data frame summarizing the predictions made by the Sojourn method.
 }
 \description{
 A function to summarize predictions made by the original Sojourn method of
-\href{https://www.ncbi.nlm.nih.gov/pubmed/23860415}{Lyden et al. (2014)}.
+\href{https://pubmed.ncbi.nlm.nih.gov/23860415/}{Lyden et al. (2014)}.
 }
 \examples{
 data(example_data, package = "Sojourn")

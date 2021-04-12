@@ -15,6 +15,6 @@ prep.nnetinputs(ag, sojourns, lag.fun)
 }
 \description{
 Prepare data for use in the neural networks of the
-\href{https://www.ncbi.nlm.nih.gov/pubmed/27015380}{SIP method}
+\href{https://pubmed.ncbi.nlm.nih.gov/27015380/}{SIP method}
 }
 \keyword{internal}

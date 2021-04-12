@@ -33,7 +33,7 @@ soj_1x_original(
 a data frame of processed data
 }
 \description{
-Calls the uni-axial Sojourn method from \href{https://www.ncbi.nlm.nih.gov/pubmed/23860415}{Lyden et al. (2014)}.
+Calls the uni-axial Sojourn method from \href{https://pubmed.ncbi.nlm.nih.gov/23860415/}{Lyden et al. (2014)}.
 }
 \examples{
 data(example_data, package = "Sojourn")

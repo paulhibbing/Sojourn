@@ -1,7 +1,7 @@
 #' Apply the youth Sojourn method
 #'
 #' Function for using the youth Sojourn method developed by
-#' \href{https://www.ncbi.nlm.nih.gov/pubmed/29135657}{Hibbing et al. (2018)}
+#' \href{https://pubmed.ncbi.nlm.nih.gov/29135657/}{Hibbing et al. (2018)}
 #'
 #' @param AG a data frame of monitor and demographic data
 #' @param vm the variable to use for processing, either

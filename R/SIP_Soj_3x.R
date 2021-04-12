@@ -5,7 +5,7 @@
 #' @param short the minimum duration of a qualifying Sojourn
 #'
 #' @return A data frame of processed data using the
-#'   \href{https://www.ncbi.nlm.nih.gov/pubmed/27015380}{SIP method}
+#'   \href{https://pubmed.ncbi.nlm.nih.gov/27015380/}{SIP method}
 #' @export
 #'
 #' @examples

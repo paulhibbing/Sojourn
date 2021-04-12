@@ -1,7 +1,7 @@
 #' Find transitions
 #'
 #' Examine a data stream for qualifying transitions according to the
-#' \href{https://www.ncbi.nlm.nih.gov/pubmed/27015380}{SIP method}
+#' \href{https://pubmed.ncbi.nlm.nih.gov/27015380/}{SIP method}
 #'
 #' @param y the data stream to examine
 #'
@@ -185,7 +185,7 @@ SIP_frame_test <- function(
 #' Combine ActiGraph and activPAL data
 #'
 #' Merge data streams for separate monitors in the
-#' \href{https://www.ncbi.nlm.nih.gov/pubmed/27015380}{SIP method}
+#' \href{https://pubmed.ncbi.nlm.nih.gov/27015380/}{SIP method}
 #'
 #' @param ag ActiGraph data
 #' @param ap activPAL data
@@ -241,7 +241,7 @@ enhance_actigraph <- function(ag,ap, verbose = FALSE) {
 #' Shape data for input into the neural networks
 #'
 #' Prepare data for use in the neural networks of the
-#' \href{https://www.ncbi.nlm.nih.gov/pubmed/27015380}{SIP method}
+#' \href{https://pubmed.ncbi.nlm.nih.gov/27015380/}{SIP method}
 #'
 #' @param ag ActiGraph and activPAL combined data
 #' @param sojourns the Sojourns identified on the data

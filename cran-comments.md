@@ -1,6 +1,7 @@
 ## Resubmission:
 This is a resubmission with the following changes:
 
+  * Fixed invalid URLs per email from Uwe Ligges.
   * Ensured conditional use of the Sojourn.Data package, per
     email from Prof Brian Ridley.
   * Made technical bug fixes (major increment) and an additional

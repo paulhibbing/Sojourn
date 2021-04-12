@@ -9,8 +9,8 @@ Status](https://travis-ci.com/paulhibbing/Sojourn.svg?branch=main)](https://trav
 
 `Sojourn` is a package for applying Sojourn methods to ActiGraph
 accelerometer data. See [Lyden et al.
-(2014)](https://www.ncbi.nlm.nih.gov/pubmed/23860415), [Ellingson et al.
-(2016)](https://www.ncbi.nlm.nih.gov/pubmed/?term=Validity+of+an+Integrative+Method+for+Processing+Physical+Activity+Data)
+(2014)](https://pubmed.ncbi.nlm.nih.gov/23860415/), [Ellingson et al.
+(2016)](https://pubmed.ncbi.nlm.nih.gov/27015380/)
 and [Hibbing et al.
-(2018)](https://www.ncbi.nlm.nih.gov/pubmed/29135657). See also the accompanying
+(2018)](https://pubmed.ncbi.nlm.nih.gov/29135657/). See also the accompanying
 [Sojourn.Data repository](https://github.com/paulhibbing/Sojourn.Data).

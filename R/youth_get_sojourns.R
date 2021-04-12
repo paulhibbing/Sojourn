@@ -1,6 +1,6 @@
 #' Label Sojourns in a data stream according to the youth-specific algorithm
 #'
-#' Identify Sojourns using the algorithm of \href{https://www.ncbi.nlm.nih.gov/pubmed/29135657}{Hibbing et al. (2018)}
+#' Identify Sojourns using the algorithm of \href{https://pubmed.ncbi.nlm.nih.gov/29135657/}{Hibbing et al. (2018)}
 #'
 #' @param vm vector of triaxial accelerometer values, either the vector
 #'   magnitude for activity counts, or the Euclidian Norm Minus One for raw

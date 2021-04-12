@@ -36,7 +36,7 @@ The original data frame, plus additional predictions made by the
 }
 \description{
 Function for using the youth Sojourn method developed by
-\href{https://www.ncbi.nlm.nih.gov/pubmed/29135657}{Hibbing et al. (2018)}
+\href{https://pubmed.ncbi.nlm.nih.gov/29135657/}{Hibbing et al. (2018)}
 }
 \note{
 The functions \code{AGread::read_AG_counts} and
