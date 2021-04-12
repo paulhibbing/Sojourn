@@ -1,3 +1,7 @@
+# Sojourn 1.0.2
+
+* Fixed an invalid URL that was not caught in 1.0.1
+
 # Sojourn 1.0.1
 
 * Fixed invalid URLs
