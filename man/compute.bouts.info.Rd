@@ -27,6 +27,8 @@ example_data <- soj_3x_original(
   example_data$Vector.Magnitude
 )
 
-compute.bouts.info(example_data$METs)
+\donttest{
+  compute.bouts.info(example_data$METs)
+}
 
 }

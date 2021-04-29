@@ -18,7 +18,9 @@
 #'   example_data$Vector.Magnitude
 #' )
 #'
-#' compute.bouts.info(example_data$METs)
+#' \donttest{
+#'   compute.bouts.info(example_data$METs)
+#' }
 #'
 compute.bouts.info <- function(est.mets, units=c("secs", "mins")) {
 
