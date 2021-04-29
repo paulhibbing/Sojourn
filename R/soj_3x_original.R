@@ -13,7 +13,6 @@
 #'
 #' @examples
 #' data(example_data, package = "Sojourn")
-#' if (isTRUE(requireNamespace("Sojourn.Data"))) {
 #' results_3x <- soj_3x_original(
 #'   example_data$axis1,
 #'   example_data$axis2,
@@ -22,18 +21,9 @@
 #' )
 #'
 #' utils::head(results_3x)
-#' }
 #'
 soj_3x_original <- function(counts, counts.2,
   counts.3, vect.mag, short=30) {
-
-  if (!requireNamespace("Sojourn.Data", quietly = TRUE)) {
-    stop(
-      "You must install the package `Sojourn.Data`",
-      "to use this function.\n  If it is missing on CRAN, use ",
-      "devtools::install_github(\"paulhibbing/Sojourn.Data\")"
-    )
-  }
 
   y <- counts
   counts.2 <- counts.2
@@ -452,8 +442,8 @@ soj_3x_original <- function(counts, counts.2,
 
   inputs <- scale(
     inputs,
-    center = Sojourn.Data::cent.1,
-    scale = Sojourn.Data::scal.1
+    center = cent.1,
+    scale = scal.1
   )
   inputs <- as.data.frame(inputs)
 
@@ -464,7 +454,7 @@ soj_3x_original <- function(counts, counts.2,
   inputs.1 <- inputs.1[,-(1:2)]
 
   cool.all <- predict(
-    Sojourn.Data::class.nnn.6,
+    class.nnn.6,
     inputs.1
   )
 
@@ -532,12 +522,12 @@ soj_3x_original <- function(counts, counts.2,
     names(nn.trans.table.all) <- c("X10.","X25.","X50.","X75.","X90.","acf")
 
     nnetinputs.acts.all <- scale(
-      nn.trans.table.all, center = Sojourn.Data::cent, scale = Sojourn.Data::scal
+      nn.trans.table.all, center = cent, scale = scal
     )
 
     #	predict METs
 
-    act.mets.all <- predict(Sojourn.Data::reg.nn,nnetinputs.acts.all)
+    act.mets.all <- predict(reg.nn,nnetinputs.acts.all)
     act.mets.all <- rep(act.mets.all,activity.durations.all)
 
     #	put back in table

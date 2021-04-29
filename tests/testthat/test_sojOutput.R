@@ -5,7 +5,6 @@ library(Sojourn)
 test_that("original Sojourn returns as expected", {
   data(example_data, package = "Sojourn")
 
-  if (isTRUE(requireNamespace("Sojourn.Data"))) {
   results_3x <- soj_3x_original(
     example_data$axis1,
     example_data$axis2,
@@ -20,13 +19,11 @@ test_that("original Sojourn returns as expected", {
   testthat::expect_known_output(
     results_1x, "soj_1x.rds"
   )
-  }
 
 })
 
 test_that("SIP returns as expected", {
 
-  if (isTRUE(requireNamespace("Sojourn.Data"))) {
   data(SIP_ag, package = "Sojourn")
   data(SIP_ap, package = "Sojourn")
 
@@ -39,12 +36,11 @@ test_that("SIP returns as expected", {
   testthat::expect_known_output(
     sip_estimate, "sip_estimate.rds"
   )
-  }
+
 })
 
 test_that("youth Sojourn returns as expected", {
 
-  if (isTRUE(requireNamespace("Sojourn.Data"))) {
   data(example_data, package = "Sojourn")
   results_youth_soj <- apply_youth_sojourn(
     AG = example_data,
@@ -55,6 +51,5 @@ test_that("youth Sojourn returns as expected", {
   testthat::expect_known_output(
     results_youth_soj, "soj_youth.rds"
   )
-  }
 
 })

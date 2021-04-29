@@ -20,15 +20,13 @@ A function to summarize predictions made by the original Sojourn method of
 }
 \examples{
 data(example_data, package = "Sojourn")
-if (isTRUE(requireNamespace("Sojourn.Data"))) {
-example_data <-
-  soj_3x_original(
-    example_data$axis1,
-    example_data$axis2,
-    example_data$axis3,
-    example_data$Vector.Magnitude
-  )
+example_data <- soj_3x_original(
+  example_data$axis1,
+  example_data$axis2,
+  example_data$axis3,
+  example_data$Vector.Magnitude
+)
 
 compute.bouts.info(example_data$METs)
-}
+
 }

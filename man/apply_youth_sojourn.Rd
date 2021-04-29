@@ -44,16 +44,13 @@ The functions \code{AGread::read_AG_counts} and
   monitor-specific portion of the \code{AG} data frame.
 }
 \examples{
-  data(example_data, package = "Sojourn")
-  \donttest{
-  if (isTRUE(requireNamespace("Sojourn.Data"))) {
-    results_youth_soj <- apply_youth_sojourn(
-      AG = example_data,
-      vm = "Vector.Magnitude",
-      Site = "Hip"
-    )
-    utils::head(results_youth_soj)
- }
- }
-
+data(example_data, package = "Sojourn")
+\donttest{
+  results_youth_soj <- apply_youth_sojourn(
+    AG = example_data,
+    vm = "Vector.Magnitude",
+    Site = "Hip"
+  )
+  utils::head(results_youth_soj)
+}
 }

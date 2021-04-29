@@ -21,21 +21,11 @@
 #'
 #' @examples
 #' data(example_data, package = "Sojourn")
-#' if (isTRUE(requireNamespace("Sojourn.Data"))) {
 #' get_youth_sojourns(example_data$Vector.Magnitude,
 #'   Output = "Counts", Site = "Hip")
-#' }
 get_youth_sojourns <- function(vm,short=30, Output = c("Counts", "Raw"),
   Site = c("Hip", "Wrist"), epoch = 1, difference = 15,
   threshold = 100, verbose = FALSE) {
-
-  if (!requireNamespace("Sojourn.Data", quietly = TRUE)) {
-    stop(
-      "You must install the package `Sojourn.Data`",
-      "to use this function.\n  If it is missing on CRAN, use ",
-      "devtools::install_github(\"paulhibbing/Sojourn.Data\")"
-    )
-  }
 
   Output <- match.arg(Output, c("Counts", "Raw", "Error"))
   Site <- match.arg(Site, c("Hip", "Wrist", "Error"))
@@ -50,9 +40,9 @@ get_youth_sojourns <- function(vm,short=30, Output = c("Counts", "Raw"),
 
   if (all(length(Site) == 1, length(Output) == 1)) {
 
-    theGrid <- Sojourn.Data::youth_grids[
+    theGrid <- youth_grids[
       with(
-        Sojourn.Data::youth_grids,
+        youth_grids,
         paste(Site, Output)
       )==paste(Site, Output),
     ]

@@ -23,7 +23,5 @@ Triaxial Sojourn method for the \href{https://pubmed.ncbi.nlm.nih.gov/27015380/}
 data(SIP_ag, package = "Sojourn")
 data(SIP_ap, package = "Sojourn")
 data <- Sojourn::enhance_actigraph(SIP_ag, SIP_ap)
-if (isTRUE(requireNamespace("Sojourn.Data"))) {
-  utils::head(sojourn_3x_SIP(data))
-}
+utils::head(sojourn_3x_SIP(data))
 }

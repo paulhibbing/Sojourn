@@ -15,20 +15,10 @@
 #'
 #' @examples
 #' data(example_data, package = "Sojourn")
-#' if (isTRUE(requireNamespace("Sojourn.Data"))) {
-#'   results_1x <- soj_1x_original(example_data$axis1)
-#'   utils::head(results_1x)
-#' }
+#' results_1x <- soj_1x_original(example_data$axis1)
+#' utils::head(results_1x)
 soj_1x_original <- function(counts,perc.cut=0.05,perc.cut.2=0.12,
   perc.cut.3=0.55,too.short=10,sit.cut=90,long.soj=120) {
-
-  if (!requireNamespace("Sojourn.Data", quietly = TRUE)) {
-    stop(
-      "You must install the package `Sojourn.Data`",
-      "to use this function.\n  If it is missing on CRAN, use ",
-      "devtools::install_github(\"paulhibbing/Sojourn.Data\")"
-    )
-  }
 
   y <- counts
   # identify sojourns.
@@ -262,14 +252,14 @@ soj_1x_original <- function(counts,perc.cut=0.05,perc.cut.2=0.12,
 
   nnetinputs <- scale(
     nn.data,
-    center = Sojourn.Data::cent,
-    scale = Sojourn.Data::scal
+    center = cent,
+    scale = scal
   )
 
   # apply nnet and put it back into the dataset
   est.mets.1 <- NA
   est.mets.2 <- predict(
-    Sojourn.Data::ALL.reg.nn,
+    ALL.reg.nn,
     nnetinputs
   )
 

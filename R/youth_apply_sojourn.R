@@ -23,28 +23,17 @@
 #' @export
 #'
 #' @examples
-#'   data(example_data, package = "Sojourn")
-#'   \donttest{
-#'   if (isTRUE(requireNamespace("Sojourn.Data"))) {
-#'     results_youth_soj <- apply_youth_sojourn(
-#'       AG = example_data,
-#'       vm = "Vector.Magnitude",
-#'       Site = "Hip"
-#'     )
-#'     utils::head(results_youth_soj)
-#'  }
-#'  }
-#'
+#' data(example_data, package = "Sojourn")
+#' \donttest{
+#'   results_youth_soj <- apply_youth_sojourn(
+#'     AG = example_data,
+#'     vm = "Vector.Magnitude",
+#'     Site = "Hip"
+#'   )
+#'   utils::head(results_youth_soj)
+#' }
 apply_youth_sojourn <- function(AG, vm = c("Vector.Magnitude", "ENMO"),
   Site = c("Hip", "Wrist"), demo_interactive = FALSE, verbose = FALSE, ...) {
-
-  if (!requireNamespace("Sojourn.Data", quietly = TRUE)) {
-    stop(
-      "You must install the package `Sojourn.Data`",
-      "to use this function.\n  If it is missing on CRAN, use ",
-      "devtools::install_github(\"paulhibbing/Sojourn.Data\")"
-    )
-  }
 
   ## Test Input
 
@@ -66,7 +55,7 @@ apply_youth_sojourn <- function(AG, vm = c("Vector.Magnitude", "ENMO"),
         Output,
         sep = ''
     )
-    ANN <- paste("Sojourn.Data::youth", ANN, sep = "_")
+    ANN <- paste("youth", ANN, sep = "_")
 
     intensity.fit <- eval(parse(text = ANN))
     FeatureSet <- intensity.fit$coefnames

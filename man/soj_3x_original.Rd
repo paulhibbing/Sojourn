@@ -25,7 +25,6 @@ Calls the triaxial Sojourn method from \href{https://pubmed.ncbi.nlm.nih.gov/238
 }
 \examples{
 data(example_data, package = "Sojourn")
-if (isTRUE(requireNamespace("Sojourn.Data"))) {
 results_3x <- soj_3x_original(
   example_data$axis1,
   example_data$axis2,
@@ -34,6 +33,5 @@ results_3x <- soj_3x_original(
 )
 
 utils::head(results_3x)
-}
 
 }

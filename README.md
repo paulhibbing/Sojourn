@@ -12,5 +12,4 @@ accelerometer data. See [Lyden et al.
 (2014)](https://pubmed.ncbi.nlm.nih.gov/23860415/), [Ellingson et al.
 (2016)](https://pubmed.ncbi.nlm.nih.gov/27015380/)
 and [Hibbing et al.
-(2018)](https://pubmed.ncbi.nlm.nih.gov/29135657/). See also the accompanying
-[Sojourn.Data repository](https://github.com/paulhibbing/Sojourn.Data).
+(2018)](https://pubmed.ncbi.nlm.nih.gov/29135657/).

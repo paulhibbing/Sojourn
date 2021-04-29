@@ -12,18 +12,8 @@
 #' data(SIP_ag, package = "Sojourn")
 #' data(SIP_ap, package = "Sojourn")
 #' data <- Sojourn::enhance_actigraph(SIP_ag, SIP_ap)
-#' if (isTRUE(requireNamespace("Sojourn.Data"))) {
-#'   utils::head(sojourn_3x_SIP(data))
-#' }
+#' utils::head(sojourn_3x_SIP(data))
 sojourn_3x_SIP <- function(ag, short = 30) {
-
-  if (!requireNamespace("Sojourn.Data", quietly = TRUE)) {
-    stop(
-      "You must install the package `Sojourn.Data`",
-      "to use this function.\n  If it is missing on CRAN, use ",
-      "devtools::install_github(\"paulhibbing/Sojourn.Data\")"
-    )
-  }
 
   y <- ag$counts
   counts.2 <- ag$axis2
@@ -79,8 +69,8 @@ sojourn_3x_SIP <- function(ag, short = 30) {
   inact.inputs <- as.data.frame(
     scale(
       inputs,
-      center = Sojourn.Data::cent.1,
-      scale = Sojourn.Data::scal.1
+      center = cent.1,
+      scale = scal.1
     )
   )
 
@@ -97,7 +87,7 @@ sojourn_3x_SIP <- function(ag, short = 30) {
 
   soj.table$type[soj.table$perc.soj < 0.7] <- apply(
     predict(
-      Sojourn.Data::class.nnn.6,
+      class.nnn.6,
       inact.inputs
     ),
     1,
@@ -150,14 +140,14 @@ sojourn_3x_SIP <- function(ag, short = 30) {
   act.inputs <- as.data.frame(
     scale(
       act.inputs,
-      center = Sojourn.Data::cent,
-      scale = Sojourn.Data::scal
+      center = cent,
+      scale = scal
     )
   )
 
   #   predict METs
 
-  act.mets.all <- predict(Sojourn.Data::reg.nn, act.inputs)
+  act.mets.all <- predict(reg.nn, act.inputs)
   soj.table$METs[is.na(soj.table$METs)] <- act.mets.all
 
   #   put back in table
