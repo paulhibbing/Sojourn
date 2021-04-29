@@ -1,6 +1,7 @@
 #' Add an object to internal package data
 #'
-#' A wrapper for \code{devtools::use_data(internal = TRUE, overwrite = TRUE)}
+#' A wrapper for \code{usethis::use_data(internal = TRUE, overwrite = TRUE,
+#' compress = "xz")}
 #' that adds the object to existing sysdata.rda, instead of overwriting the
 #' existing file with only the data being added
 #'
@@ -50,10 +51,10 @@ internal_add <- function(object, sysdata = "R/sysdata.rda") {
   if (single_save) {
     command <-
       paste(
-        "devtools::use_data(",
+        "usethis::use_data(",
         new_object,
         ", ",
-        "internal = TRUE, overwrite = TRUE)",
+        "internal = TRUE, overwrite = TRUE, compress = \"xz\")",
         sep = "")
 
     assign(new_object, object)
@@ -79,12 +80,12 @@ internal_add <- function(object, sysdata = "R/sysdata.rda") {
 
   command <-
     paste(
-      "devtools::use_data(",
+      "usethis::use_data(",
       paste(internal_objects, collapse = ", "),
       ", ",
       new_object,
       ", ",
-      "internal = TRUE, overwrite = TRUE)",
+      "internal = TRUE, overwrite = TRUE, compress = \"xz\")",
       sep = "")
 
   assign(new_object, object)
