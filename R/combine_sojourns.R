@@ -3,8 +3,8 @@
 #' Iteratively combine sojourns that are too short, until all Sojourns meet the
 #' minimum length requirement
 #'
-#' @param durations vector of Sojourn durations
 #' @inheritParams soj_3x_original
+#' @param durations durations of a set of Sojourns
 #' @param sojourns vector of Sojourn assignments
 #'
 #' @keywords internal
@@ -104,11 +104,6 @@ combine_soj3x <- function(durations, short, sojourns) {
 
 }
 
-#' Combine too-short Sojourns
-#'
-#' @param durations durations of a set of Sojourns
-#' @param short duration cutoff that defines a too-short Sojourn
-#'
 #' @keywords internal
 #' @rdname combine_sojourns
 combine.sojourns <- function(durations, short) {
