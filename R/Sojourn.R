@@ -18,7 +18,7 @@
 #' @name Sojourn
 NULL
 
-#' @importFrom magrittr %>%
+#' @importFrom magrittr %>% %<>% %T>%
 NULL
 
 #' @importFrom stats acf predict quantile sd var aggregate
