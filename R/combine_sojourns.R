@@ -9,7 +9,7 @@
 #'
 #' @keywords internal
 #' @name combine_sojourns
-combine_soj3x <- function(durations, short, sojourns) {
+combine_soj3x <- function(durations, short, sojourns, verbose) {
 
   repeat {
 
@@ -24,12 +24,20 @@ combine_soj3x <- function(durations, short, sojourns) {
       if (1 %in% too.short) {
 
         sojourns <-
-          diff(too.short) %>%
-          {. != 1} %>%
-          which(.) %>%
+          too.short %T>%
+          {if (verbose) message(
+            "Combining ", dplyr::first(which(diff(.) != 1)),
+            " short Sojourn(s) at the start of the file"
+          )} %>%
+          .[diff(.) != 1] %>%
           dplyr::first(.) %>%
-          {. + 1} %>%
-          pmax(sojourns, .)
+          pmax(sojourns, . + 1) ## match to the next sojourn
+
+        durations %<>% update_durations(sojourns)
+
+        sojourns <- seq(durations)
+
+        next ## Start the loop over (recheck/recalculate too.short)
 
       }
 
@@ -38,21 +46,38 @@ combine_soj3x <- function(durations, short, sojourns) {
       if (dplyr::last(too.short) %in% max(sojourns)) {
 
         sojourns <-
-          rev(too.short) %>%
+          rev(too.short) %T>%
+          {if (verbose) message(
+            "Combining ", dplyr::first(which(diff(.) != -1)),
+            " short Sojourn(s) at the end of the file"
+          )} %>%
           .[diff(.) != -1] %>%
           dplyr::first(.) %>%
-          pmin(sojourns, .)
+          pmin(sojourns, . - 1) ## match to the previous sojourn
+
+        durations %<>% update_durations(sojourns)
+
+        sojourns <- seq(durations)
+
+        next ## Start the loop over (recheck/recalculate too.short)
 
       }
 
     ## Deal with all other short Sojourns by
     ## combining them with their shortest neighbor
 
-      # First match *all* sojourns to their shortest neighbors
+      # First make sure Sojourns are sequential as expected
 
-        short_matches <-
-          seq(sojourns) %>%
-          sapply(function(x, durations, l) {
+        seq(sojourns) %>%
+        identical(sojourns) %>%
+        stopifnot(.)
+
+      # If so, start by matching *all* sojourns to
+      # their shortest neighbors
+
+        short_matches <- sapply(
+          sojourns,
+          function(x, durations, l) {
             {x + c(-1, 1)} %>%
             durations[.] %>%
             ifelse(is.na(.), 0, .) %>%
@@ -60,46 +85,49 @@ combine_soj3x <- function(durations, short, sojourns) {
             switch(x - 1, x + 1) %>%
             sojourns[.] %>%
             ifelse(x %in% c(1, l), NA, .)
-          }, durations, l = length(durations))
+          },
+          durations = durations,
+          l = length(durations)
+        )
 
       # Then insert those assignments for cases where the Sojourn
       # is actually too short
 
-        revised.sojourns <-
-          seq(sojourns) %>%
-          {. %in% too.short} %>%
-          ifelse(
-            short_matches,
-            sojourns
-          )
+        # Make the assignments
+        sojourns %<>% ifelse(
+          . %in% too.short, short_matches, .
+        )
 
       # Fix any Sojourns that were assigned out of sequence
 
-        out_of_sequence <-
-          diff(revised.sojourns) %>%
-          {. < 0}
+        out_of_sequence <- diff(sojourns) < 0
 
         if (any(out_of_sequence)) {
 
           out_of_sequence %<>% which(.)
 
-          revised.sojourns[out_of_sequence + 1] <-
-            revised.sojourns[out_of_sequence]
+          sojourns[out_of_sequence + 1] <-
+            sojourns[out_of_sequence]
 
         }
 
     ## Update variables now that things are combined
 
-      revised.durations <- durations <-
-        tapply(durations, revised.sojourns, sum) %>%
-        as.vector(.)
+      durations %<>% update_durations(sojourns)
 
-      revised.sojourns <- sojourns <- seq(revised.durations)
+      sojourns <- seq(durations)
 
   }
 
   list(sojourns = sojourns, durations = durations)
 
+}
+
+#' @keywords internal
+#' @rdname combine_sojourns
+update_durations <- function(durations, sojourns) {
+  tapply(durations, sojourns, sum) %>%
+  as.vector(.)
 }
 
 #' @keywords internal
