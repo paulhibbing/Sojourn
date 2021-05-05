@@ -14,8 +14,8 @@ prep_nnet_soj3x_original <- function(
 
   nnetinputs <-
     tapply(
-      inactivities[ ,variable],
-      inactivities$sojourns,
+      df[ ,variable],
+      df$sojourns,
       quantile,
       probs=c(.1,.25,.5,.75,.9)
     ) %>%
@@ -33,9 +33,9 @@ prep_nnet_soj3x_original <- function(
   nnetinputs$acf <- 0
 
   g <- 1
-  for (soj in unique(inactivities$sojourns)) {
+  for (soj in unique(df$sojourns)) {
 
-    counts <- inactivities[inactivities$sojourns==soj, variable]
+    counts <- df[df$sojourns==soj, variable]
 
     if (sum(counts)>0) {
 
