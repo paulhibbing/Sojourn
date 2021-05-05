@@ -11,9 +11,7 @@
 #' @name combine_sojourns
 combine_soj3x <- function(durations, short, sojourns) {
 
-  counter <- 1
-
-  repeat { # loop 1
+  repeat {
 
     ## Find Sojourns that are (still) too short
 
@@ -49,7 +47,6 @@ combine_soj3x <- function(durations, short, sojourns) {
 
     ## Deal with all other short Sojourns by
     ## combining them with their shortest neighbor
-    ## THIS CURRENTLY COMBINES WITH *LONGEST* NEIGHBOR
 
       # First match *all* sojourns to their shortest neighbors
 
@@ -59,7 +56,7 @@ combine_soj3x <- function(durations, short, sojourns) {
             {x + c(-1, 1)} %>%
             durations[.] %>%
             ifelse(is.na(.), 0, .) %>%
-            which.max(.) %>%
+            which.min(.) %>%
             switch(x - 1, x + 1) %>%
             sojourns[.] %>%
             ifelse(x %in% c(1, l), NA, .)
@@ -83,9 +80,12 @@ combine_soj3x <- function(durations, short, sojourns) {
           {. < 0}
 
         if (any(out_of_sequence)) {
+
           out_of_sequence %<>% which(.)
+
           revised.sojourns[out_of_sequence + 1] <-
             revised.sojourns[out_of_sequence]
+
         }
 
     ## Update variables now that things are combined
@@ -96,11 +96,9 @@ combine_soj3x <- function(durations, short, sojourns) {
 
       revised.sojourns <- sojourns <- seq(revised.durations)
 
-      counter %<>% {. + 1}
-
   }
 
-  list(sojourns = sojourns, durations = durations, counter = counter)
+  list(sojourns = sojourns, durations = durations)
 
 }
 
