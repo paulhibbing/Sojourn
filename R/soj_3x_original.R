@@ -33,7 +33,7 @@ soj_3x_original <- function(counts, counts.2,
   ## Find initial transitions and durations
 
     if (verbose) cat(
-      "\n...Getting initial transition/duration values"
+      "\n...Getting initial transition/duration/sojourn values"
     )
 
     trans <-
@@ -49,19 +49,7 @@ soj_3x_original <- function(counts, counts.2,
       length(counts) - dplyr::last(trans.inds)
     )
 
-  ## Get initial sojourn information
-
-    if (verbose) cat(
-      "\n...Getting initial Sojourn values"
-    )
-
     sojourns <- seq(durations)
-
-    sojourns.long <- rep(sojourns, durations)
-
-    mean.cnts.soj <-
-      tapply(counts, sojourns.long, mean) %>%
-      as.vector(.)
 
   ## Combine Sojourns that are too short
 
