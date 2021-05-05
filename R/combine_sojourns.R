@@ -26,18 +26,14 @@ combine_soj3x <- function(durations, short, sojourns, verbose) {
         sojourns <-
           too.short %T>%
           {if (verbose) message(
-            "Combining ", dplyr::first(which(diff(.) != 1)),
+            "\nCombining ", dplyr::first(which(diff(.) != 1)),
             " short Sojourn(s) at the start of the file"
           )} %>%
           .[diff(.) != 1] %>%
           dplyr::first(.) %>%
           pmax(sojourns, . + 1) ## match to the next sojourn
 
-        durations %<>% update_durations(sojourns)
-
-        sojourns <- seq(durations)
-
-        next ## Start the loop over (recheck/recalculate too.short)
+        too.short %<>% intersect(sojourns)
 
       }
 
@@ -48,52 +44,41 @@ combine_soj3x <- function(durations, short, sojourns, verbose) {
         sojourns <-
           rev(too.short) %T>%
           {if (verbose) message(
-            "Combining ", dplyr::first(which(diff(.) != -1)),
+            "\nCombining ", dplyr::first(which(diff(.) != -1)),
             " short Sojourn(s) at the end of the file"
           )} %>%
           .[diff(.) != -1] %>%
           dplyr::first(.) %>%
           pmin(sojourns, . - 1) ## match to the previous sojourn
 
-        durations %<>% update_durations(sojourns)
-
-        sojourns <- seq(durations)
-
-        next ## Start the loop over (recheck/recalculate too.short)
+        too.short %<>% intersect(sojourns)
 
       }
 
     ## Deal with all other short Sojourns by
     ## combining them with their shortest neighbor
 
-      # First make sure Sojourns are sequential as expected
+      # First, match *all* sojourns to their shortest neighbors
 
-        seq(sojourns) %>%
-        identical(sojourns) %>%
-        stopifnot(.)
+        short_matches <-
+          seq(sojourns) %>%
+          sapply(
+            function(x, durations, l) {
+              {x + c(-1, 1)} %>%
+              durations[.] %>%
+              ifelse(is.na(.), 0, .) %>%
+              which.max(.) %>% ## !!THIS IS THE *LONGEST* NEIGHBOR
+              switch(x - 1, x + 1) %>%
+              sojourns[.] %>%
+              ifelse(x %in% c(1, l), NA, .)
+            },
+            durations = durations,
+            l = length(durations)
+          )
 
-      # If so, start by matching *all* sojourns to
-      # their shortest neighbors
-
-        short_matches <- sapply(
-          sojourns,
-          function(x, durations, l) {
-            {x + c(-1, 1)} %>%
-            durations[.] %>%
-            ifelse(is.na(.), 0, .) %>%
-            which.min(.) %>%
-            switch(x - 1, x + 1) %>%
-            sojourns[.] %>%
-            ifelse(x %in% c(1, l), NA, .)
-          },
-          durations = durations,
-          l = length(durations)
-        )
-
-      # Then insert those assignments for cases where the Sojourn
+      # Then insert those values for cases where the Sojourn
       # is actually too short
 
-        # Make the assignments
         sojourns %<>% ifelse(
           . %in% too.short, short_matches, .
         )
