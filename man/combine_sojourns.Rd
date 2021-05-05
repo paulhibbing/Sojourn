@@ -3,13 +3,10 @@
 \name{combine_sojourns}
 \alias{combine_sojourns}
 \alias{combine_soj3x}
-\alias{update_durations}
 \alias{combine.sojourns}
 \title{Combine short Sojourns}
 \usage{
 combine_soj3x(durations, short, sojourns, verbose)
-
-update_durations(durations, sojourns)
 
 combine.sojourns(durations, short)
 }

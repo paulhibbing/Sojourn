@@ -15,9 +15,13 @@ combine_soj3x <- function(durations, short, sojourns, verbose) {
 
     ## Find Sojourns that are (still) too short
 
-      if (!any(durations < short)) break
+      is_short <- durations < short
 
-      too.short <- which(durations < short)
+      if (!any(is_short)) {
+        break
+      } else {
+        too.short <- which(is_short)
+      }
 
     ## Combine any short Sojourns at the start of the file
 
@@ -79,9 +83,9 @@ combine_soj3x <- function(durations, short, sojourns, verbose) {
       # Then insert those values for cases where the Sojourn
       # is actually too short
 
-        sojourns %<>% ifelse(
-          . %in% too.short, short_matches, .
-        )
+        sojourns %<>%
+          seq(.) %>%
+          {ifelse(. %in% too.short, short_matches, sojourns)}
 
       # Fix any Sojourns that were assigned out of sequence
 
@@ -98,7 +102,9 @@ combine_soj3x <- function(durations, short, sojourns, verbose) {
 
     ## Update variables now that things are combined
 
-      durations %<>% update_durations(sojourns)
+      durations %<>%
+        tapply(sojourns, sum) %>%
+        as.vector(.)
 
       sojourns <- seq(durations)
 
@@ -106,13 +112,6 @@ combine_soj3x <- function(durations, short, sojourns, verbose) {
 
   list(sojourns = sojourns, durations = durations)
 
-}
-
-#' @keywords internal
-#' @rdname combine_sojourns
-update_durations <- function(durations, sojourns) {
-  tapply(durations, sojourns, sum) %>%
-  as.vector(.)
 }
 
 #' @keywords internal
