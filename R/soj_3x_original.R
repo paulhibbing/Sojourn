@@ -7,6 +7,7 @@
 #' @param counts.3 numeric vector of activity counts from the third axis
 #' @param vect.mag vector magnitude of the activity counts
 #' @param short minimum length of one Sojourn
+#' @param verbose logical. Print updates to console?
 #'
 #' @return a data frame of processed data
 #' @export
@@ -23,13 +24,17 @@
 #' utils::head(results_3x)
 #'
 soj_3x_original <- function(counts, counts.2,
-  counts.3, vect.mag, short=30) {
+  counts.3, vect.mag, short=30, verbose = FALSE) {
 
   if (missing(vect.mag)) vect.mag <- sqrt(
     (counts^2)+(counts.2^2)+(counts.3^2)
   )
 
   ## Find initial transitions and durations
+
+    if (verbose) cat(
+      "\n...Getting initial transition/duration values"
+    )
 
     trans <-
       {diff(counts) * -1} %>%
@@ -46,6 +51,10 @@ soj_3x_original <- function(counts, counts.2,
 
   ## Get initial sojourn information
 
+    if (verbose) cat(
+      "\n...Getting initial Sojourn values"
+    )
+
     sojourns <- seq(durations)
 
     sojourns.long <- rep(sojourns, durations)
@@ -56,9 +65,15 @@ soj_3x_original <- function(counts, counts.2,
 
   ## Combine Sojourns that are too short
 
-    combined <- combine_soj3x(durations, short, sojourns)
+    if (verbose) cat(
+      "\n...Combining short Sojourns"
+    )
 
-  ##	Tabulate durations, Sojourns, etc
+    combined <- combine_soj3x(
+      durations, short, sojourns, verbose
+    )
+
+  ## Tabulate durations, Sojourns, etc
 
     trans.table <-
       data.frame(
@@ -79,6 +94,10 @@ soj_3x_original <- function(counts, counts.2,
 
   ## Now get inactivity indices
 
+    if (verbose) cat(
+      "\n...Finding inactivity periods"
+    )
+
     inds.inacts <- which(trans.table$perc.soj<0.7)
     inactivities <- trans.table[inds.inacts,]
 
@@ -89,6 +108,10 @@ soj_3x_original <- function(counts, counts.2,
       inactivities$durations[.]
 
   ## Get activity type predictions
+
+    if (verbose) cat(
+      "\n...Identifying activity types"
+    )
 
     cool.all <-
       cbind(
@@ -109,6 +132,10 @@ soj_3x_original <- function(counts, counts.2,
       rep(inact.durations)
 
   #	Assign METs by types and previous criteria (percent of non-zeros)
+
+    if (verbose) cat(
+      "\n...Calculating METs"
+    )
 
     trans.table$soj.mets.all <-
       ifelse(
@@ -171,6 +198,10 @@ soj_3x_original <- function(counts, counts.2,
 
   ## Get Breaks from sitting (not currently included in output)
   ## Then finish up
+
+    if (verbose) cat(
+      "\n...Finishing up"
+    )
 
     trans.table %>%
     {.$soj.mets.all[-nrow(.)] < 1.5} %>%
