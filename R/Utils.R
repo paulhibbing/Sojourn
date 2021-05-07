@@ -1,3 +1,64 @@
+#' Prepare ActiGraph data for entry into the Sojourn neural network
+#'
+#' @param df The ActiGraph data
+#' @param variable The variable to prepare
+#'
+#' @keywords internal
+prep_nnet_soj3x_original <- function(
+  df,
+  variable = c("counts", "counts.2", "counts.3", "vect.mag"),
+  suffix = ""
+) {
+
+  variable <- match.arg(variable)
+
+  nnetinputs <-
+    tapply(
+      df[ ,variable],
+      df$sojourns,
+      quantile,
+      probs=c(.1,.25,.5,.75,.9)
+    ) %>%
+    unlist(.) %>%
+    as.vector(.)
+
+  nnetinputs <- matrix(
+    nnetinputs,
+    length(nnetinputs)/5,
+    5,
+    byrow=TRUE
+  )
+  nnetinputs <- as.data.frame(nnetinputs)
+  names(nnetinputs) <- c("X10.","X25.","X50.","X75.","X90.")
+  nnetinputs$acf <- 0
+
+  g <- 1
+  for (soj in unique(df$sojourns)) {
+
+    counts <- df[df$sojourns==soj, variable]
+
+    if (sum(counts)>0) {
+
+      temp <- acf(counts,lag.max=1,plot=F)
+      nnetinputs$acf[g] <- as.numeric(unlist(temp[1,1])[1])
+
+    }
+
+    g <- g+1
+
+  }
+
+  nnetinputs$acf[is.na(nnetinputs$acf)] <- mean(
+    nnetinputs$acf,
+    na.rm=TRUE
+  )
+
+  nnetinputs %>%
+  stats::setNames(., paste0(names(.), suffix)) %>%
+  stats::setNames(., gsub("[.]{2}", ".", names(.)))
+
+}
+
 ### I believe the next couple of functions are unnecessary (leftover from)
 ### old coding, but they're not hurting anything and I don't want to delete
 ### them in case something breaks

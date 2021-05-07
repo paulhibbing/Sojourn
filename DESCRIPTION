@@ -2,7 +2,7 @@ Package: Sojourn
 Type: Package
 Title: Apply Sojourn Methods for Processing ActiGraph
     Accelerometer Data
-Version: 1.0.2
+Version: 1.1.0
 Authors@R: c(
     person(c("Paul", "R."), "Hibbing", email = "paulhibbing@gmail.com",
 		  role = c("aut","cre")),
@@ -30,8 +30,7 @@ Imports: dplyr (>= 0.7),
     stats,
     svDialogs (>= 1.0),
     utils,
-    zoo (>= 1.8),
-    Rcpp
+    zoo (>= 1.8)
 RoxygenNote: 7.1.1
 URL: https://github.com/paulhibbing/Sojourn
 BugReports: https://github.com/paulhibbing/Sojourn/issues

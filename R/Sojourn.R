@@ -18,7 +18,7 @@
 #' @name Sojourn
 NULL
 
-#' @importFrom magrittr %>%
+#' @importFrom magrittr %>% %<>% %T>%
 NULL
 
 #' @importFrom stats acf predict quantile sd var aggregate
@@ -33,4 +33,6 @@ NULL
 #' @import nnet
 NULL
 
-if(getRversion() >= "2.15.1")  utils::globalVariables(c("."))
+if(getRversion() >= "2.15.1")  utils::globalVariables(
+  c(".", "inactivities")
+)
