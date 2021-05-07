@@ -1,3 +1,8 @@
+# Sojourn 1.1.0
+
+* Removed dependencies on Sojourn.Data and Rcpp
+* Fixed all CRAN check errors
+
 # Sojourn 1.0.2
 
 * Fixed an invalid URL that was not caught in 1.0.1
