@@ -60,9 +60,9 @@ combine_soj3x <- function(durations, short, sojourns, verbose) {
       }
 
     ## Deal with all other short Sojourns by
-    ## combining them with their shortest neighbor
+    ## combining them with their longest neighbor
 
-      # First, match *all* sojourns to their shortest neighbors
+      # First, match *all* sojourns to their longest neighbors
 
         short_matches <-
           seq(sojourns) %>%
@@ -71,7 +71,7 @@ combine_soj3x <- function(durations, short, sojourns, verbose) {
               {x + c(-1, 1)} %>%
               durations[.] %>%
               ifelse(is.na(.), 0, .) %>%
-              which.max(.) %>% ## !!THIS IS THE *LONGEST* NEIGHBOR
+              which.max(.) %>%
               switch(x - 1, x + 1) %>%
               sojourns[.] %>%
               ifelse(x %in% c(1, l), NA, .)
