@@ -26,7 +26,7 @@ input_demographic <- function(...){
   repeat{
     ageTest <- try(as.integer(Age), TRUE)
 
-    if(class(ageTest) == "try-error" | is.na(ageTest)) {
+    if(inherits(ageTest, "try-error") | is.na(ageTest)) {
 
       message('Age not entered correctly. Try again')
       Age <- svDialogs::dlgInput('Please enter the participant\'s age in years:',
@@ -49,7 +49,7 @@ input_demographic <- function(...){
   repeat{
     bmiTest <- try(as.numeric(BMI), TRUE)
 
-    if(class(bmiTest) == "try-error" | is.na(bmiTest)) {
+    if(inherits(bmiTest, "try-error") | is.na(bmiTest)) {
 
       message('BMI not entered correctly. Try again')
       BMI <- svDialogs::dlgInput('Please enter the participant\'s BMI',
