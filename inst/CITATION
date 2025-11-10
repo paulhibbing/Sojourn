@@ -1,24 +1,27 @@
 citHeader("To cite package `Sojourn` in publications use:")
 
-citEntry(
-  entry        = "Misc",
+bibentry(
+  bibtype      = "Misc",
   title        = paste(
       "Sojourn: Apply Sojourn methods for processing",
       "ActiGraph accelerometer data"
   ),
-  author       = personList(
-      as.person("Paul R. Hibbing"),
-      as.person("Kate Lyden"),
-      as.person("Isaac J. Schwabacher")
+  author       = c(
+    person(c("Paul", "R."), "Hibbing", email = "paulhibbing@gmail.com",
+		  role = c("aut","cre")),
+		person(c("Kate"), "Lyden", email = "katelyden6@gmail.com",
+		  role = c("aut")),
+    person(c("Isaac", "J."), "Schwabacher",
+      role = c("aut"))
   ),
   year         = "2019",
-  url          = "https://cran.r-project.org/package=Sojourn",
+  url          = "https://github.com/paulhibbing/Sojourn",
 
   textVersion  =
   paste(
     "Paul R. Hibbing, Kate Lyden, & Isaac J. Schwabacher (2019).",
     "Sojourn: Apply Sojourn methods for processing",
     "ActiGraph accelerometer data.",
-    "URL: https://cran.r-project.org/package=Sojourn."
+    "URL: https://github.com/paulhibbing/Sojourn."
   )
 )

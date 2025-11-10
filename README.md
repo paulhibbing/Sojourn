@@ -1,7 +1,5 @@
 <!-- README.md is generated from README.Rmd. Please edit that file -->
 
-[![Travis-CI Build
-Status](https://travis-ci.com/paulhibbing/Sojourn.svg?branch=main)](https://travis-ci.com/paulhibbing/Sojourn)
 [![Licence](https://img.shields.io/badge/licence-GPL--3-blue.svg)](https://www.gnu.org/licenses/gpl-3.0.en.html)
 [![CRAN\_Status\_Badge](http://www.r-pkg.org/badges/version/Sojourn)](https://cran.r-project.org/package=Sojourn)
 
