@@ -13,6 +13,9 @@ enhance_actigraph(ag, ap, verbose = FALSE)
 
 \item{verbose}{logical. Print information to console?}
 }
+\value{
+data frame of combined ActiGraph and activPAL data
+}
 \description{
 Merge data streams for separate monitors in the
 \href{https://pubmed.ncbi.nlm.nih.gov/27015380/}{SIP method}

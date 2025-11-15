@@ -114,6 +114,8 @@ SIP_frame_test <- function(
 #' @param ap activPAL data
 #' @param verbose logical. Print information to console?
 #'
+#' @return data frame of combined ActiGraph and activPAL data
+#'
 #' @export
 #'
 #' @examples
