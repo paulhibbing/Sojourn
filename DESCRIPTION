@@ -2,7 +2,7 @@ Package: Sojourn
 Type: Package
 Title: Apply Sojourn Methods for Processing ActiGraph
     Accelerometer Data
-Version: 1.2.0
+Version: 1.2.1
 Authors@R: c(
     person(c("Paul", "R."), "Hibbing", email = "paulhibbing@gmail.com",
 		  role = c("aut","cre")),

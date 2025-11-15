@@ -1,3 +1,9 @@
+# Sojourn 1.2.1
+
+* Fix a minor documentation issue for `enhance_actigraph`
+
+
+
 # Sojourn 1.2.0
 
 * Re-release following resolution of upstream issue in dependency chain
