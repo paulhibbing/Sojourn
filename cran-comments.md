@@ -1,6 +1,5 @@
 ## Resubmission:
-This is effectively a re-release of the previously-archived version, now that
-the showstopping dependency issue has been fixed upstream.
+This addresses a missing \value tag noted in comments from prior submission.
 
     
     
